@@ -1,0 +1,119 @@
+%======================================================================
+% ScholarPath AdDU -- Capstone Manuscript (Master Driver File)
+% ----------------------------------------------------------------------
+% Preamble discipline: global settings only. All body content lives in
+% chapters/*.tex and is wired in below via \input. Do not add prose here.
+%======================================================================
+\documentclass[12pt,letterpaper]{report}
+
+%----- Encoding, fonts, and page geometry -----------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}   % scalable fonts required by microtype font expansion
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{microtype}
+
+%----- Mathematics -----------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%----- Graphics, tables, and listings ----------------------------------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xurl}     % allow URL line breaks anywhere (used in Appendix A)
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  framesep=6pt,
+  aboveskip=12pt,
+  belowskip=12pt,
+  captionpos=b,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape\color{black!60},
+  showstringspaces=false
+}
+
+%----- Bibliography ----------------------------------------------------
+\usepackage{csquotes}
+\usepackage[backend=biber,style=numeric-comp,sorting=none,maxbibnames=99]{biblatex}
+\addbibresource{references.bib}
+
+%----- Hyperref (load last) --------------------------------------------
+\usepackage[hidelinks]{hyperref}
+
+%======================================================================
+% Document metadata
+%======================================================================
+\title{%
+  {\LARGE\bfseries ScholarPath AdDU: A Web-Based Centralized Scholarship\\[4pt]
+  Discovery and Application Tracking System\\[4pt]
+  for Ateneo de Davao University Students\par}
+  \vspace{18pt}
+  {\large A Research Project Presented to the Faculty of the\\
+  Computer Studies Cluster, School of Arts and Science\\
+  Ateneo de Davao University, Davao City\par}
+  \vspace{18pt}
+  {\normalsize In Partial Fulfillment of the Requirements in\\
+  Capstone Project and Research 1, 2nd Semester, SY 2025--2026\par}
+}
+\author{%
+  Operario, Raphael Miguel\\
+  Belen, Brendon Justine\\
+  Espinosa, Eriel John\\[10pt]
+  \normalsize Adviser: Adrian Ablazo, MSc.
+}
+\date{April 2026}
+
+%======================================================================
+% Front matter
+%======================================================================
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{1cm}
+  \includegraphics[width=0.22\textwidth]{addu_logo.png}\par
+  \vspace{1.5cm}
+  {\LARGE\bfseries ScholarPath AdDU: A Web-Based Centralized Scholarship Discovery and Application Tracking System for Ateneo de Davao University Students\par}
+  \vspace{1.5cm}
+  {\large A Research Project Presented to the Faculty of the Computer Studies Cluster, School of Arts and Science\\ Ateneo de Davao University, Davao City\par}
+  \vspace{1cm}
+  {\normalsize In Partial Fulfillment of the Requirements in Capstone Project and Research 1, 2nd Semester, SY 2025--2026\par}
+  \vspace{1.5cm}
+  {\large
+    Raphael Miguel Operario\\
+    Brendon Justine Belen\\
+    Eriel John Espinosa\par}
+  \vspace{1cm}
+  {\normalsize Adviser: Adrian Ablazo, MSc.\par}
+  \vfill
+  {\normalsize April 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+%======================================================================
+% Body -- one \input per chapter (preamble discipline: no prose here)
+%======================================================================
+\input{chapters/01_introduction}
+\input{chapters/02_related_works}
+\input{chapters/03_methodology}
+\input{chapters/04_theoretical_background}
+
+%----- References ------------------------------------------------------
+\printbibliography[heading=bibintoc]
+
+%----- Appendices ------------------------------------------------------
+\appendix
+\input{chapters/05_appendix_a}
+\input{chapters/06_appendix_b}
+\input{chapters/07_appendix_c}
+
+\end{document}
