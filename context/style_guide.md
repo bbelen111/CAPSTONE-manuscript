@@ -4,16 +4,15 @@
 - Academic, precise, declarative. Prefer "The engine evaluates…" over "We think the engine might…".
 - Present tense for system behavior ("the engine applies the exclusion flag"); future tense is acceptable **only** in Chapter 3 for procedures not yet executed at drafting time ("participants will be provided…").
 - Use em dashes (---) for appositive elaboration, as in the source draft; do not overuse (max ~1 per paragraph).
-- Spell out on first use with acronym: "Office of Student Affairs (OSA)", "Quality Point Index (QPI)", "System Usability Scale (SUS)". Thereafter use the acronym.
+- Spell out on first use with acronym: "School of Arts and Sciences (SAS)", "Grant-in-Aid (GIA)", "System Usability Scale (SUS)", "Standard Procedure for Scholarship Applications (SOP)". Thereafter use the acronym.
 - Brand names verbatim: Supabase, PostgreSQL, Capacitor, Twilio, SendGrid, Vite, BIR, DOST, CHED.
 
 ## Math & Technical Notation
 - Vectors/sets are not heavily used; when needed: bold lowercase for vectors (\(\mathbf{x}\)), calligraphic for sets.
 - Inequalities in prose use `$\geq$` / `$\leq$` macros, not Unicode ≥ ≤.
 - Membership: `$\in$`. Weights and scores: upright decimals (`0.5`), never fractions like ½.
-- The fit-score formula in §3.3.1 uses equal weighting (0.5/0.5) — keep this consistent wherever restated.
-- Algorithmic text lives ONLY in the `listings` environment (label `lst:matching`); never re-typeset pseudocode as prose.
-- Identifiers (table/column names such as `Grant_Category`, `QPI_Requirement`) should use `\texttt{}` or `\lstinline` — underscore must be escaped in prose.
+- Algorithmic text lives ONLY in the `listings` environment (label `lst:lifecycle`, the application status state machine); never re-typeset pseudocode as prose.
+- Identifiers (table/column names such as `School_Code`, `Verification_Status`) should use `\texttt{}` or `\lstinline` — underscore must be escaped in prose.
 
 ## Citation Rules
 - Engine: **biblatex + biber**, style `numeric-comp`, `sorting=none` (citation numbers follow bibliography order ref1…ref50, mirroring the legacy draft's numbering).
@@ -32,7 +31,20 @@
 - Tables: `booktabs` (`\toprule/\midrule/\bottomrule`), no vertical rules; long inventories use `longtable`.
 - Figures: PNGs in `figures/`, referenced via `\graphicspath{{figures/}}`; prefer `[htbp]`; raster images extracted from the legacy PDF are placeholders — regenerate as vector/PDF when possible.
 
-## Terminology Consistency (from source; keep these exact)
-- "funding pipelines" (54 total), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "fit-margin relevance score", "Pre-Study Student Problem Validation Survey", "Post-Prototype Perceived Effort Survey"
-- Categories: Internally Funded Endowments · Corporate & External Foundations · State-Sponsored Grants · Specialized Service Pipelines
-- Numbers: "54 funding pipelines" and "over 50 programs" both appear; prefer **54** when citing the inventory count.
+## Terminology Consistency (ISO audit revision, 2026-09-28; keep these exact)
+Source of truth: `context/iso_revision_tracker.md` and the Revised ISO Audit Preparation Report.
+
+**Use:**
+- System framing: "Data-Feeding Committee Portal" — the system structures, filters and presents data; a person makes every status decision.
+- "Application Lifecycle Path" and "Academic Trajectory Path" (the two meanings of "ScholarPath").
+- "Phase 1 Pre-qualification" (January to April) and "Phase 2 Full Verification" (May to enrollment).
+- "Conditional Revert" (5 calendar days) and the status "Lapsed" (a staff member confirms any disapproval).
+- "Document Vault", "Pre-Study Student Problem Validation Survey", "Post-Prototype Perceived Effort Survey".
+- Offices: "University Scholarship Office", "Office of Admission", "School Scholarship Subcommittee".
+- Schools: School of Nursing (SON), School of Engineering and Architecture (SEA), School of Business and Governance (SBG), School of Education (SOE), School of Arts and Sciences (SAS).
+- Tracks: Jubilee Scholarship, Grant-in-Aid (GIA), Working Scholars. External and government grants are a non-selection disbursement pathway.
+- Threshold: "high school average of at least 85%". Volume: "approximately 1,326 applicants per cycle".
+
+**Retired (do not use for the system):** "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "fit-margin relevance score", "automated matching", "54 funding pipelines" as system scope (Appendix A keeps the 54-row inventory as institutional context only), "QPI" as the admission threshold, "CAS", "School of Business", "Computer Studies & Engineering", "Dynamic Faceted Search" as a core contribution (use "committee filtering").
+
+**Unconfirmed rules:** write them as configurable parameters and tag the source with `% TODO(OPEN-n)`; never render "[To confirm]" in the PDF.

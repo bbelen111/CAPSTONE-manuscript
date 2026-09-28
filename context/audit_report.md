@@ -1,5 +1,7 @@
 # Audit Report — ScholarPath AdDU (Migration + Editorial Critique)
 
+> **Superseded in part (2026-09-28).** The ISO audit revision (`iso_revision_tracker.md`) removed the matching engine and rebuilt Tables 1–8. §1 item 1 (flattened tables) is resolved. In §3, weaknesses #4 (RQ2 test protocol, now the Lifecycle Test Case Matrix) and #5 (FitScore normalization; the FitScore is removed) no longer apply. The remaining findings still stand.
+
 Audit date: 2026-04 (on migrated build, `main.pdf`, 58 pp., compiles clean with `latexmk -pdf`).
 
 ## 1. Migration Integrity (structural)

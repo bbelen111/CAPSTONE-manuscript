@@ -1,44 +1,64 @@
 # Project Overview — ScholarPath AdDU
 
+> **Revised 2026-09-28** to follow the *Revised ISO Audit Preparation Report* (post-KII with the admissions office). See `iso_revision_tracker.md`. The earlier "Smart Eligibility Checker / 54-pipeline discovery" framing is retired.
+
 ## Working Title
-**ScholarPath AdDU: A Web-Based Centralized Scholarship Discovery and Application Tracking System for Ateneo de Davao University Students**
+**ScholarPath AdDU: A Data-Feeding Scholarship Application Lifecycle and Committee Decision-Support System for Ateneo de Davao University** (wording to confirm with the adviser — L-5)
 
 ## Team & Venue
 - Authors: Raphael Miguel Operario, Brendon Justine Belen, Eriel John Espinosa
 - Adviser: Adrian Ablazo, MSc.
-- Institution: Computer Studies Cluster, School of Arts and Science, Ateneo de Davao University (AdDU), Davao City
-- Requirement: Capstone Project and Research 1, 2nd Semester, SY 2025–2026 (target: April 2026)
+- Institution: Computer Studies Cluster, School of Arts and Sciences (SAS), Ateneo de Davao University (AdDU), Davao City
+- Requirement: Capstone Project and Research 1
+- Key dates: code freeze + manuscript submission **Oct 10, 2026**; ISO audit **Oct 12–15, 2026**
 
 ## Core Thesis
-AdDU's 54-pipeline financial aid ecosystem is administered through decentralized, largely paper-based processes (Form 230-SCH, sealed letters, static announcements), causing discovery friction, eligibility mismatch, and missed deadlines. A centralized, web-based platform — unifying **discovery (faceted search), eligibility automation (rule-based matching with conflict resolution), document management (one-time-upload vault), and proactive notification (event-driven SMS/email)** — measurably reduces the time and effort students spend securing financial aid, while remaining compliant with RA 10173 (Philippine Data Privacy Act of 2012).
+AdDU's internal scholarship admission process handles approximately 1,326 applicants per cycle across three tracks (Jubilee Scholarship, Grant-in-Aid, Working Scholars). It follows an eight-step Standard Procedure for Scholarship Applications (SOP) with single-phase, paper-heavy document collection, and it relies on five School Scholarship Subcommittees (SON, SEA, SBG, SOE, SAS) that apply different selection criteria. ScholarPath AdDU is a **Data-Feeding Committee Portal**. It structures, verifies and presents applicant data, and a person makes and logs every status decision. Its components are:
+- a two-stage digital submission into the Document Vault (Phase 1 Pre-qualification, Phase 2 Full Verification);
+- a 5-calendar-day Conditional Revert for incomplete files;
+- committee filtering partitioned by school;
+- an audit log of every human status change;
+- event-driven notifications.
+
+External and government grants are outside selection; the university only processes their disbursement.
 
 ## Technical Domain
 - Web + hybrid mobile application (Vite JS bundle wrapped via Capacitor)
-- Supabase/PostgreSQL backend: normalized relational schema, compound B-Tree + range indexing, row-level role-governed access
-- Rule-based expert system ("Smart Eligibility Checker") with an Exclusion Flag Hierarchy conflict-resolution mechanism
-- Dynamic faceted search over four metadata facets (funding origin taxonomy)
-- Event-driven notification subsystem via serverless Edge Functions (Twilio SMS, SendGrid email)
-- NIST RBAC for data privacy enforcement
+- Supabase/PostgreSQL backend: normalized schema, compound B-Tree + range indexing for committee filtering, Row Level Security
+- Application status state machine with human-confirmation guards (no module assigns, approves or disapproves without a recorded human action)
+- Rule-based *screening flags* (baseline and subcommittee rule sets) that inform, never decide
+- Event-driven notifications via Edge Functions (Twilio SMS, SendGrid email); applicant result notices only after the Office of Admission release
+- NIST RBAC: Applicant/Scholar, University Scholarship Office staff, Interview Panel, School Subcommittee, Office of Admission, System Administrator
 
-## Research Questions (from §1.2 Problem Statement)
-1. **RQ1 (Time/effort):** What is the perceived reduction in time AdDU students spend discovering and applying for financial aid using ScholarPath AdDU vs. the current manual process?
-2. **RQ2 (Matching accuracy):** How does the Smart Eligibility Checker perform in (a) functional correctness — does the Exclusion Flag Hierarchy produce expected outputs across edge-case profiles — and (b) accuracy of eligibility matching?
-3. **RQ3 (Deadline management):** How does the automated notification subsystem affect students' ability to track multiple simultaneous deadlines?
-4. **RQ4 (Usability):** What is the perceived usability of the platform (SUS + ISO/IEC 25010 functional suitability, performance efficiency)?
+## Research Questions
+1. **RQ1 (Time/effort):** Perceived reduction in applicant time and effort under the two-stage digital process versus the paper process.
+2. **RQ2 (Lifecycle correctness + committee usefulness):**
+   - (a) Do status transitions, including Conditional Revert and Lapsed, match the Lifecycle Test Case Matrix, with zero status changes lacking a recorded human actor?
+   - (b) How useful do Scholarship Office staff and subcommittee members find the Committee Portal?
+3. **RQ3 (Deadlines/corrections):** Effect of notifications on missed phase deadlines and uncorrected files.
+4. **RQ4 (Usability):** SUS + ISO/IEC 25010 functional suitability and performance efficiency.
 
 ## Methodology Summary
-- **Design:** Within-subjects comparative usability evaluation; pre-study baseline (Appendix B) vs. post-prototype (Appendix C) paired instruments on the same cohort.
-- **Development:** Agile SDLC, five iterative phases (requirements via Key Informant Interviews → design → development → testing → deployment/refinement).
-- **Evaluation:** Task-based observational testing (completion rates, time-on-task) with a purposive sample of ~10–15 AdDU students, OSA staff, and Department Chairs/Coordinators; SUS (Bangor et al.; Tullis & Stetson sample-size rationale) + ISO/IEC 25010 framework; descriptive statistics for item-to-item mean comparison.
-- **Ethics:** RA 10173 compliance, informed consent, pseudonymized mock data, secure disposal.
+- **Requirements:** KII with the admissions office/University Scholarship Office; the SOP (`ref51`); the ISO audit preparation report (`ref52`).
+- **Design:** Within-subjects comparative usability evaluation (Appendix B pre, Appendix C post) plus a staff/committee instrument (Appendix D).
+- **Development:** Agile SDLC, five phases. The audit-driven redesign counts as an Adaptation cycle.
+- **Evaluation:**
+  - Task-based testing (T1 registration, T2 two-phase upload and Revert response, T3 staff verification and lapse confirmation, T4 subcommittee review and reallocation confirmation).
+  - The Lifecycle Test Case Matrix.
+  - SUS and ISO/IEC 25010.
+- **Ethics:** RA 10173, informed consent (parental/guardian consent for minors), mock data, secure disposal.
 
 ## Theoretical Anchors (Chapter 4)
-DeLone & McLean IS Success Model (umbrella) · Relational theory/normalization (Codd) · Cloud infrastructure (NIST; Tanenbaum) · Metadata-driven organization (Glushko) · Rule-based expert systems (Buchanan & Duda) · Information Foraging Theory (Pirolli & Card) · Event-driven architecture (IBM) · RBAC (Ferraiolo & Kuhn; Sandhu) · Empirical process control/Agile (Schwaber & Beedle) · HCI & ISO/IEC 25010 (Dix et al.)
-
-## Target Audience
-- Primary: Capstone defense panel and Computer Studies Cluster faculty
-- Secondary: AdDU OSA administrators and similar Philippine HEI offices seeking a replicable paper-to-digital migration blueprint
-- Tertiary: Philippine higher-education information-systems researchers (RRL conversation: Al-Ayyubi & Maulana; Daluyon & Bilog; Amer; Orgianus et al.)
+- DeLone & McLean IS Success Model (umbrella)
+- Relational theory/normalization (Codd)
+- Cloud infrastructure (NIST)
+- Metadata-driven organization (Glushko)
+- Rule-based screening with human-in-the-loop decision support (Buchanan & Duda; decision-support sources to be supplied — L-6)
+- Information Foraging Theory, applied to committee filtering
+- Event-driven architecture
+- RBAC (Ferraiolo & Kuhn; Sandhu)
+- Empirical process control/Agile
+- HCI & ISO/IEC 25010
 
 ## Manuscript Status Snapshot
-Chapters 1–4 exist as a revised draft (source PDF). **Results/Discussion and Conclusion chapters do not yet exist** — the evaluation is scheduled/prospective in the text ("will be administered"), consistent with a Research 1 manuscript mid-stream. See `outline.md` and `drafting_queue.md`.
+Chapters 1–4 and Appendices A–D are revised to the ISO audit framing. Open questions are tagged `% TODO(OPEN-n)` in the source. Figures 1 and 4 must be redrawn and the lifecycle figure drawn. Results/Discussion and Conclusion chapters do not exist yet.

@@ -1,25 +1,27 @@
 # Drafting Queue — ScholarPath AdDU
 
-Ordered by structural dependency: items 1–3 repair foundations that later chapters build on; items 4–8 add new prose. Compile after every item (`latexmk -pdf -interaction=nonstopmode main.tex`).
+Compile after every item (`latexmk -pdf -interaction=nonstopmode main.tex`).
 
-## Foundation Repairs (do before any new prose)
-- [ ] **1. Reconstruct Table 2 — Synthesis of System Gaps and Design Responses** (`chapters/02_related_works.tex`, §2.9). Highest-value repair: the RRL's keystone artifact. Replace the flattened run-on paragraph with a 3-column `booktabs` table (Reviewed Work | Gap | ScholarPath Design Response). Content is recoverable from the legacy PDF text and §3.3.
-- [ ] **2. Reconstruct Tables 1, 4, 5, 6, 7** in `01_introduction.tex` (Table 1: AdDU Financial Aid Programs), `04_theoretical_background.tex` (Table 4: anomalies; Table 5: paper-vs-Vault comparison; Table 6: conflict-resolution strategies; Table 7: EDA trigger mapping). Same method as item 1; add `\label{tab:...}`.
-- [ ] **3. Curate `references.bib`.** For each of the 50 entries: correct entry type (`@article`/`@inproceedings`/`@book`/`@misc`+`url`), parse author name lists properly (remove the double-brace literal workaround), attach real DOIs/URLs, then delete the `needs-manual-curation` keyword. Verified by clean biber run.
+> **2026-09-28 — ISO audit revision applied** (user-authorized ahead of the foundation items). It absorbed the former items 1 (Table 2), 2 (Tables 1, 4–8), 5 (RQ2 test protocol, now the Lifecycle Test Case Matrix) and most of 7 (structural proofreading of Ch1–4 and the appendices). Details are in `iso_revision_tracker.md`.
 
-## Structural Cleanup (before Chapters 5–6 are drafted)
-- [ ] **4. Convert hardcoded cross-references to `\ref{}`.** Grep chapters for "Section 3.4", "Task 1", "Appendix B/C", "Figure", "Table" in prose; add `\label{sec:...}` where missing and rewire.
-- [ ] **5. Add §3.4 edge-case evaluation protocol for RQ2** — a table of test profiles exercising the Exclusion Flag Hierarchy (concurrent government grants, clinical-program exclusions, boundary QPI/income, expired grants) with expected outputs. *Blocks Chapter 5.3.*
-- [ ] **6. Add statistical procedure detail to §3.4.2** — name the paired test (state Wilcoxon signed-rank as the ordinal-safe option alongside the paired t-test), the significance level, and the reliability plan (Cronbach's α) for the Likert grids. *Blocks Chapter 5.2/5.5.*
-- [ ] **7. Proofreading pass over migrated prose** — fix extraction blemishes ("Hierarchy .", "undergraduate -specific"), convert Problem Statement numbered items to `enumerate`, standardize "54 funding pipelines".
+## Before the code freeze (Oct 10, 2026)
+- [ ] **1. Resolve OPEN-1 … OPEN-10 with the University Scholarship Office.** For each answer, replace the configurable wording with the confirmed rule, delete the `% TODO(OPEN-n)` comment, and mark it resolved in `iso_revision_tracker.md`. Find the markers with `grep -rn "TODO(OPEN-" chapters/`.
+- [ ] **2. Resolve local items L-1 … L-6** (Scholarship Office vs. OSA, Form 230-SCH, Appendix B administration status, minor consent, title wording, decision-support sources).
+- [ ] **3. Draw the figures** (PNG to `figures/`): the new `figure_lifecycle.png` replaces the placeholder in §3.3.2, and `figure4_architecture.png` and `figure1_issm.png` must be redrawn. Specs are in `iso_revision_tracker.md`.
+- [ ] **4. Add decision-support / human-oversight sources** (L-6) as `ref53`+ and cite them in §2.3 and §4.5.
 
-## New Prose (requires data or user approval)
-- [ ] **8. Chapter 5 — Results and Discussion** (scaffold exists in `outline.md`). Draft 5.1 demographics → 5.4 RQ3 → 5.2 RQ1 (paired pre/post) → 5.3 RQ2 (edge-case outcomes) → 5.5 RQ4 (SUS benchmark vs. Bangor et al. curves) → 5.6 qualitative themes. *Blocked until testing executes; sections 5.2/5.5 can be drafted with placeholder tables once item 6 lands.*
-- [ ] **9. Chapter 6 — Summary, Conclusions, and Recommendations.** Per-RQ conclusions mirroring §1.2; future work: registrar integration, weighted award-allocation support, PWA/native push evaluation. *Draft after Chapter 5.*
-- [ ] **10. Abstract** (150–250 words: problem, platform, method, headline results, contribution). *Write last.*
-- [ ] **11. Add `\listoftables` + `\listoffigures`** to front matter once items 1–2 exist.
+## Foundation (carried over)
+- [ ] **5. Curate `references.bib`** (now 52 entries): correct entry types, parse author lists, attach DOIs/URLs, then remove `needs-manual-curation`. `ref51`/`ref52` are internal documents; confirm the SOP's year and issuing office.
+- [ ] **6. Add statistical procedure detail to §3.4.2**: name the paired test (Wilcoxon signed-rank as the ordinal-safe option alongside the paired t-test), the significance level, and the reliability plan (Cronbach's α) for the Likert grids. *Blocks Chapter 5.2/5.5.*
+- [ ] **7. Remaining proofreading**: bibliography "Retrieved from" titles; the three cosmetic overfull lines (Ch1 scope list, Ch3 indexing list).
+- [ ] **8. Add `\listoftables` + `\listoffigures`** to front matter (tables now exist).
+
+## New Prose (requires data)
+- [ ] **9. Chapter 5 — Results and Discussion.** 5.1 demographics → 5.4 RQ3 → 5.2 RQ1 (paired pre/post) → 5.3 RQ2 (a: Lifecycle Test Case Matrix pass rates, with the human-confirmation cases reported separately; b: Appendix D means) → 5.5 RQ4 (SUS vs. Bangor et al.) → 5.6 qualitative themes. *Blocked until testing executes.*
+- [ ] **10. Chapter 6 — Summary, Conclusions, and Recommendations.** Per-RQ conclusions; future work such as entrance-exam system integration and Academic Trajectory Path analytics. (Weighted award allocation is no longer future work: no algorithm selects scholars.)
+- [ ] **11. Abstract** (150–250 words). *Write last.*
 
 ## Immediate Top 3
-1. **Table 2 reconstruction** (item 1) — unblocks the argument of the entire RRL.
-2. **Bibliography curation** (item 3) — the only remaining build-level liability; required before any submission.
-3. **§3.4 edge-case protocol** (item 5) — the prerequisite for RQ2, the study's central technical claim.
+1. **OPEN items with the Scholarship Office** (item 1): the manuscript cannot be finalized for the audit without them.
+2. **Figures** (item 3): the lifecycle figure is required by the report's action plan.
+3. **Bibliography curation** (item 5): required before submission.

@@ -43,7 +43,9 @@ Project: **ScholarPath AdDU** — a LaTeX capstone manuscript, not application c
 - Academic, precise, declarative ("The engine evaluates…", not "We think…").
 - Present tense for system behavior; future tense **only** for not-yet-executed procedures in Chapter 3 ("participants will be provided…").
 - Spell out + abbreviate on first use ("Office of Student Affairs (OSA)"). Brand names verbatim: Supabase, PostgreSQL, Capacitor, Twilio, SendGrid, Vite, BIR, DOST, CHED.
-- Exact terminology: "funding pipelines" (prefer **54** as the count), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "fit-margin relevance score".
+- Exact terminology (ISO audit revision, see `context/iso_revision_tracker.md` and `context/style_guide.md`): "Data-Feeding Committee Portal", "Application Lifecycle Path", "Academic Trajectory Path", "Conditional Revert", "Document Vault", "University Scholarship Office", "School Scholarship Subcommittee", SAS/SBG/SEA/SON/SOE, "high school average of at least 85%". Retired: "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "fit-margin relevance score", automated matching.
+- Human decision rule: never describe the system as approving, disapproving, awarding or reallocating on its own; a named human role confirms every status change.
+- Unconfirmed rules: phrase as configurable parameters and tag with `% TODO(OPEN-n)`; never print "[To confirm]" in the PDF.
 - Em dashes sparingly (max ~1 per paragraph).
 
 ## Claude Code Notes

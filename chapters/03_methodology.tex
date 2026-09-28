@@ -4,165 +4,401 @@
 This chapter details the systematic procedures, processes, and tools utilized in the design, development, and evaluation of the ScholarPath AdDU system. It outlines the research design, system development methodology, system architecture, data gathering instruments, and statistical tools used for data analysis.
 
 \section{Research Design}
+\label{sec:research-design}
 
-The research design incorporates a comparative usability evaluation to validate the system's impact on processing efficiency. During the initial requirements gathering phase, the researchers will administer a pre-study time-on-task survey to a purposive sample of existing scholars. This survey aims to measure the average duration students currently spend discovering financial aid options and routing physical documents (e.g., Form 230-SCH). Once the ScholarPath AdDU prototype is developed, a controlled, task-based usability testing session will be conducted. The perceived time and effort recorded in the Pre-Study Student Problem Validation Survey (Appendix B) will then be compared against the corresponding items in the Post-Prototype Perceived Effort Survey (Appendix C), which is administered to the same participants immediately following the prototype session. Both instruments use identical ordinal and Likert-scaled items, enabling direct item-to-item mean comparisons to determine whether participants perceive the digital workflow to require significantly less time and effort than the manual process they described at baseline. The design and administration of both instruments, and the statistical procedure for their comparison, are detailed in Section 3.4.3. This comparative analysis will quantify the reduction in application processing time and validate the system's perceived performance efficiency. The comparative evaluation follows a within-subjects design, meaning the same cohort of participants who complete the Student Problem Validation Survey (establishing perceived baseline effort) will subsequently participate in the prototype usability testing session. This design is chosen over a between-subjects approach because it eliminates inter-group variability --- each participant serves as their own control, ensuring that any observed difference in perceived effort is attributable to the system rather than individual differences in prior scholarship experience. A sample of 10 to 15 participants is sufficient for this design given that SUS reliability stabilizes at that range \cite{ref42}, and the time-perception comparison uses ordinal scaled data that does not require large-N inferential statistics. This study employs a Developmental Research Design, specifically focusing on System Development. This approach is the most appropriate for IT and Computer Studies capstone projects, as it centers on the structured creation, implementation, and evaluation of a functional software solution to address a specific operational problem. In this context, the design governs the transition of the AdDU Office of Student Affairs' (OSA) manual scholarship application process into a centralized, web-based digital ecosystem. The developmental design is complemented by a descriptive evaluation phase to assess the prototype's usability and functional suitability.
+This study employs a Developmental Research Design, specifically focusing on System Development. This approach is the most appropriate for IT and Computer Studies capstone projects, as it centers on the structured creation, implementation, and evaluation of a functional software solution to address a specific operational problem. In this context, the design governs the transition of Ateneo de Davao University's (AdDU) paper-based scholarship admission process, as defined in the Standard Procedure for Scholarship Applications (SOP) \cite{ref51}, into a digital, data-feeding workflow that supports the University Scholarship Office and the five School Scholarship Subcommittees. The system requirements are drawn from Key Informant Interviews (KII) with the admissions office and are consolidated in the project's ISO audit preparation report \cite{ref52}. The developmental design is complemented by a descriptive evaluation phase to assess the prototype's usability and functional suitability.
+
+The research design incorporates a comparative usability evaluation to validate the system's impact on processing efficiency. The researchers will administer the Pre-Study Student Problem Validation Survey (Appendix~\ref{app:pre-survey}) to a purposive sample of current or recent AdDU scholarship applicants. This survey measures the perceived time and effort applicants spent on the paper-based process, from reading the scholarship announcement through preparing and physically submitting the SOP application form and its supporting documents. % TODO(L-2): confirm whether Form 230-SCH is the SOP application form.
+Once the ScholarPath AdDU prototype is developed, a controlled, task-based usability testing session will be conducted. The perceived time and effort recorded at baseline will then be compared against the corresponding items in the Post-Prototype Perceived Effort Survey (Appendix~\ref{app:post-survey}), which is administered to the same participants immediately following the prototype session. Both instruments use parallel ordinal and Likert-scaled items, enabling direct item-to-item comparisons to determine whether participants perceive the two-stage digital workflow to require less time and effort than the manual process they described at baseline. University Scholarship Office staff and School Scholarship Subcommittee members who complete the staff-side tasks additionally complete the Committee Portal Usefulness Survey (Appendix~\ref{app:committee-survey}). The design and administration of all instruments are detailed in Section~\ref{sec:instruments}.
+
+The comparative evaluation follows a within-subjects design, meaning the same cohort of applicant participants who complete the Pre-Study Survey subsequently participate in the prototype usability testing session. This design is chosen over a between-subjects approach because it eliminates inter-group variability. Each participant serves as their own control, so any observed difference in perceived effort is attributable to the system rather than to individual differences in prior scholarship experience. A sample of 10 to 15 participants is sufficient for this design given that SUS reliability stabilizes at that range \cite{ref42}, and the time-perception comparison uses ordinal scaled data that does not require large-N inferential statistics.
 
 \section{System Development Life Cycle (SDLC)}
+\label{sec:sdlc}
 
-To ensure flexibility and iterative improvement, the development of ScholarPath AdDU follows the Agile Development Methodology. Unlike rigid, linear models, Agile allows the development team to adapt to evolving requirements from stakeholders --- including OSA staff, Department Chairs, and Admissions personnel --- through continuous feedback loops between phases. As illustrated in Figure 2, the development process is organized into five iterative phases, each building upon the outputs of the last. \begin{figure}[htbp]
+To ensure flexibility and iterative improvement, the development of ScholarPath AdDU follows the Agile Development Methodology. Unlike rigid, linear models, Agile allows the development team to adapt to evolving requirements from stakeholders, including the University Scholarship Office, the Office of Admission, and the School Scholarship Subcommittees, through continuous feedback loops between phases. As illustrated in Figure~\ref{fig:sdlc}, the development process is organized into five iterative phases, each building upon the outputs of the last.
+
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{figure2_p23.png}
   \caption{ScholarPath AdDU Agile SDLC Flowchart}
   \label{fig:sdlc}
-\end{figure} The first phase involves initial data collection through Key Informant Interviews (KII) conducted with primary stakeholders, including OSA administrators, Admissions staff, and Department Chairs. This phase identifies the system's exact functional requirements, existing manual bottlenecks (e.g., Form 230-SCH handling), and the specific student data attributes necessary for the automated scholarship matching algorithm. Phase 2: System Design. Drawing from the gathered requirements, this phase produces the architectural blueprint of the system. Deliverables include the relational database schema, User Interface/User Experience (UI/UX) wireframes for both student and administrator views, and the logic flow underpinning the Smart Eligibility Checker. Phase 3: Development. The core programming phase translates design artifacts into a functioning system. Front-end interfaces are built using Vite as the primary build tool, paired with a component-based JavaScript framework (React or Vue) for a reactive, modular UI. Back-end infrastructure --- including the PostgreSQL database, secure Document Vault storage, and user authentication --- is managed entirely through Supabase. To extend the application to mobile platforms, Capacitor wraps the Vite production build into native Android and iOS packages, enabling cross-platform deployment without maintaining a separate codebase. Phase 4: Testing. Prior to wider release, the system undergoes alpha testing to verify that core functionalities --- such as document uploading and automated criteria matching --- operate without critical errors. Issues surfaced during this phase are documented and fed back into development for resolution before proceeding. Phase 5: Deployment and Evaluation. The functional prototype is deployed to a purposive sample of end-users for User Acceptance Testing (UAT). System quality is then assessed using standardized usability metrics defined by the ISO/IEC 25010 standard, providing quantitative and qualitative data to inform further refinement. As the feedback loop in Figure 2 indicates, findings from the evaluation phase are not terminal --- they inform subsequent iterations, allowing requirements, design decisions, and development priorities to be revisited as stakeholder needs become clearer through real-world use.
+\end{figure}
+
+Phase 1: Requirements Gathering. The first phase involves data collection through Key Informant Interviews (KII) with primary stakeholders, including admissions and University Scholarship Office personnel. This phase identifies the eight steps of the SOP \cite{ref51}, the documents required at each step, the selection criteria applied by each School Scholarship Subcommittee, and the points in the process where a person decides an applicant's status. Phase 2: System Design. Drawing from the gathered requirements, this phase produces the architectural blueprint of the system. Deliverables include the relational database schema, User Interface/User Experience (UI/UX) wireframes for applicant, staff, and committee views, and the application status state machine that governs the Application Lifecycle Path. Phase 3: Development. The core programming phase translates design artifacts into a functioning system. Front-end interfaces are built using Vite as the primary build tool, paired with a component-based JavaScript framework (React or Vue) for a reactive, modular UI. Back-end infrastructure, including the PostgreSQL database, secure Document Vault storage, and user authentication, is managed entirely through Supabase. To extend the application to mobile platforms, Capacitor wraps the Vite production build into native Android and iOS packages, enabling cross-platform deployment without maintaining a separate codebase. Phase 4: Testing. Prior to wider release, the system undergoes alpha testing to verify that core functionalities, such as two-stage document uploading, Conditional Revert handling, and human-confirmed status changes, operate without critical errors. Issues surfaced during this phase are documented and fed back into development for resolution before proceeding. Phase 5: Deployment and Evaluation. The functional prototype is deployed to a purposive sample of end-users for User Acceptance Testing (UAT). System quality is then assessed using standardized usability metrics defined by the ISO/IEC 25010 standard, providing quantitative and qualitative data to inform further refinement.
+
+As the feedback loop in Figure~\ref{fig:sdlc} indicates, findings are not terminal; they inform subsequent iterations. The present design is itself the product of one such Adaptation cycle. An earlier prototype automatically assigned students to grants from academic and income data. Following the KII with the admissions office and preparation for an institutional ISO audit \cite{ref52}, that automated matching engine was removed. It was replaced by a data-feeding architecture in which no module assigns, approves, or disapproves an applicant without a recorded human action.
 
 \section{System Architecture and Algorithmic Logic}
+\label{sec:architecture}
 
-The architectural decisions underlying ScholarPath AdDU are not derived independently --- each major component is a direct response to a documented gap in the reviewed literature. The choice of a centralized Supabase/PostgreSQL backend was motivated by the policy desynchronization documented in Catibog \cite{ref16} and Orgianus et al. \cite{ref36}, where decentralized, multi-campus systems produced deadline mismatches and contradictory eligibility information that a single canonical database is architecturally positioned to eliminate. The Document Vault --- a one-time upload, metadata-tagged, multi-attach storage architecture --- directly addresses the integrated document handling gap identified independently by both Al-Ayyubi and Maulana \cite{ref3} and Bagaporo and Espinosa \cite{ref12}, whose systems demonstrated measurable processing improvements while still requiring physical document submission as a separate, offline step. The Rule-Based Eligibility Engine with its Exclusion Flag Hierarchy was motivated by Bilog's \cite{ref14} finding that student self-assessment of eligibility was the primary driver of application errors in multi-campus deployments, and that sequential rule evaluation without conflict resolution produced edge cases where students with concurrent government grants passed eligibility checks for additional state-sponsored awards. The Dynamic Faceted Search with compound B-Tree and Range indexing was grounded in Mahdi et al.'s \cite{ref4} confirmation that faceted mechanisms outperform keyword retrieval in repositories with multiple intersecting categorical attributes, and Tunkelang's \cite{ref43} finding that the quality of the underlying metadata taxonomy determines whether faceted search reduces or merely redistributes cognitive load. The automated multi-channel notification subsystem responds to the missed-deadline patterns attributable to passive communication channels, documented as a structural weakness in decentralized administration by Catibog \cite{ref16}. Finally, the hybrid JavaScript mobile-and-web architecture via the Capacitor wrapper was directly motivated by the World Bank's \cite{ref48} caution that digitization without mobile-first design fails to achieve adoption in Philippine HEI contexts, particularly for Mindanao-based student populations. These connections are what distinguish ScholarPath AdDU's design as an evidence-grounded architectural response rather than a general-purpose digitization exercise.
+The architectural decisions underlying ScholarPath AdDU respond to two sources of evidence: the operational requirements documented in the SOP \cite{ref51} and the KII \cite{ref52}, and the gaps identified in the reviewed literature. The choice of a centralized Supabase/PostgreSQL backend was motivated by the policy desynchronization documented in Catibog \cite{ref16} and Orgianus et al. \cite{ref36}, where decentralized systems produced contradictory information that a single canonical database is architecturally positioned to eliminate. The Document Vault and its two-stage submission design directly address the integrated document handling gap identified by both Al-Ayyubi and Maulana \cite{ref3} and Bagaporo and Espinosa \cite{ref12}, whose systems still required physical document submission as a separate, offline step. Bilog's \cite{ref14} finding that unaided self-assessment of eligibility drove application errors motivates Phase~1 Pre-qualification, in which the system flags baseline criteria early and a University Scholarship Office staff member confirms the outcome. Kanwal et al.'s \cite{ref50} acknowledgment that machine-learned eligibility decisions offer no interpretable audit trail motivates the central governance rule of the platform: the system structures, filters, and presents applicant data, and a person makes every decision that changes an applicant's status. The automated notification subsystem responds to the missed-deadline patterns attributable to passive communication channels documented by Catibog \cite{ref16}. Finally, the hybrid mobile-and-web architecture via the Capacitor wrapper was motivated by the World Bank's \cite{ref48} caution that digitization without mobile-first design fails to achieve adoption in Philippine HEI contexts.
 
-\subsection{The ``Smart Eligibility Checker'' (Automated Matching Engine)}
+\subsection{Scope: Internal Scholarship Tracks}
+\label{sec:tracks}
 
-This engine actively evaluates three primary student parameters --- Quality Point Index (QPI), household income, and enrolled degree program --- against the specific constraints of each grant. Student QPI is self-reported during profile registration (see Task 1, Section 3.4.1) and stored in the system's PostgreSQL database. The platform does not integrate with the AdDU University Registrar's database; QPI data accuracy is therefore dependent on the student's own input at the time of registration and is not programmatically verified against official academic records prior to eligibility matching. To handle institutional edge cases and policy contradictions --- such as desynchronized guidelines where a general STEM grant might implicitly exclude BS Nursing due to separate college undergraduate -specific clinical fees --- the engine utilizes an Exclusion Flag Hierarchy . In this logic, specific negative constraints (exclusions) always override general positive constraints (inclusions). Pseudocode for the Matching Algorithm: The following pseudocode illustrates the sequential logic processed by the backend engine when a student requests a scholarship match: \begin{lstlisting}[caption={Pseudocode of the Smart Eligibility Checker matching algorithm},label={lst:matching}]
-FUNCTION ExecuteSmartMatch(StudentProfile, ScholarshipDatabase):
-    Initialize Array EligibleGrants = []
+The platform governs the three internal scholarship tracks through which AdDU selects approximately 1,326 applicants per cycle: the Jubilee Scholarship, the Grant-in-Aid (GIA), and the Working Scholars program (Table~\ref{tab:tracks}, Chapter~\ref{ch:introduction}). At registration, each applicant chooses one internal track and up to two degree programs, matching their entrance exam selections. External and government grants, such as those from the Department of Science and Technology (DOST), local government units, and private foundations, are outside the selection process. The university processes their disbursement through financial obligation clearance only after receiving the official beneficiary roster, and the platform treats them as a non-selection pathway.
 
-    // Step 1: Extract Student Attributes
-    SET s_QPI = StudentProfile.QPI
-    SET s_Income = StudentProfile.HouseholdIncome
-    SET s_Degree = StudentProfile.DegreeProgram
-    SET s_HasActiveGovGrant = StudentProfile.HasActiveGovernmentGrant
-        // Boolean flag; TRUE if student holds a concurrent state-sponsored award
+\subsection{Application Lifecycle Path and Two-Stage Submission}
+\label{sec:lifecycle}
 
-    // Step 2: Iterate through the funding pipelines
-    FOR EACH Grant IN ScholarshipDatabase:
-        // Skip inactive or expired grants
-        IF Grant.IsActive == FALSE OR Grant.Deadline < CURRENT_DATE THEN
-            CONTINUE
-        END IF
+The name ScholarPath refers to two structured paths. The Application Lifecycle Path carries an applicant from registration through Phase~1 Pre-qualification, Phase~2 Full Verification, interview scoring, and subcommittee selection, to an award, waitlist, or disapproval outcome. The Academic Trajectory Path then tracks an awarded scholar's academic standing, the completion of service obligations for Working Scholars, and graduation within the contracted degree program. Figure~\ref{fig:lifecycle} presents the end-to-end Application Lifecycle Path.
 
-        // Step 3: Base Criteria Evaluation
-        IF s_QPI >= Grant.MinimumQPI AND s_Income <= Grant.MaximumIncome THEN
+\begin{figure}[htbp]
+  \centering
+  % TODO(FIG): replace this placeholder with
+  %   \includegraphics[width=\textwidth]{figure_lifecycle.png}
+  % drawn to match the ISO audit report's lifecycle diagram (10 steps, 1 loop back).
+  \fbox{\parbox{0.92\textwidth}{\centering\small\vspace{0.8em}
+    Registration $\rightarrow$ Phase~1 Pre-qualification $\rightarrow$ Phase~2 Full Verification $\rightarrow$ Interview $\rightarrow$ School Subcommittee Selection $\rightarrow$ Release of Results (Office of Admission) $\rightarrow$ Applicant Notified $\rightarrow$ Academic Trajectory Path\\[0.6em]
+    Full Verification $\xrightarrow{\text{missing files}}$ Conditional Revert $\xrightarrow{\text{corrected files}}$ Full Verification\\[0.3em]
+    Conditional Revert $\xrightarrow{\text{not corrected after 5 days}}$ Lapsed (staff confirm disapproval)\vspace{0.8em}}}
+  \caption{Application Lifecycle Path of ScholarPath AdDU}
+  \label{fig:lifecycle}
+\end{figure}
 
-            // Step 4: Degree Program Matching
-            IF s_Degree IN Grant.EligibleDegrees OR Grant.EligibleDegrees == "ALL" THEN
+The revised workflow keeps all eight SOP steps in their original order. It changes only how documents are submitted (step~2) and adds system support for steps~3 to~8, as summarized in Table~\ref{tab:sop-alignment}. % TODO(OPEN-10): will the SOP be formally revised for two-stage submission and Conditional Revert?
 
-                // Step 5: Policy Contradiction & Exclusion Resolution
-                // Example: Resolving concurrent grant restrictions
-                IF s_HasActiveGovGrant == TRUE AND Grant.AllowsMultipleGrants == FALSE THEN
-                    CONTINUE   // Exclusion overrides eligibility; skip grant
-                END IF
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Alignment of ScholarPath AdDU with the Standard Procedure for Scholarship Applications}
+  \label{tab:sop-alignment}
+  \begin{tabular}{@{}p{3.6cm}p{6.2cm}p{4.6cm}@{}}
+    \toprule
+    SOP Step & System Function & Change from SOP \\
+    \midrule
+    1. Application announcement & Public information page and inquiry form & None \\
+    2. Submission of applications & Two-stage digital submission to the Document Vault & Single submission becomes two phases \\
+    3. Document verification & University Scholarship Office reviews files in the Document Vault and encodes applicant profiles & None \\ % TODO(OPEN-8): who performs step 3 in practice.
+    4. Endorsement to next stage & Qualified applications are released to interview scheduling & None \\
+    5. Interview & Interview panel assigned per application records scores and recommendations & Panel composition is configurable \\ % TODO(OPEN-2)
+    6. Evaluation and deliberation & School Scholarship Subcommittee reviews data presented by the system and records its decision & None \\
+    7. Recommendation and approval & The subcommittee's accepted list is sent to the Office of Admission & System records the handoff \\
+    8. Release of results & Office of Admission releases results; applicants are notified only after that release & Notification follows the release event \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-                // If all checks pass, append to user's dashboard
-                EligibleGrants.APPEND(Grant)
-            END IF
+Applicants submit documents in two windows (Table~\ref{tab:phases}). In Phase~1 Pre-qualification, the system screens basic eligibility, and pre-qualified applicants receive a provisional go-ahead without submitting a full physical file. In Phase~2 Full Verification, the University Scholarship Office completes verification of the remaining documents before committee review. All credential verification takes place inside the University Scholarship Office; no external or third-party verification service appears in any workflow.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Two-Stage Submission Windows and Required Documents}
+  \label{tab:phases}
+  \begin{tabular}{@{}p{2.6cm}p{2.2cm}p{9.6cm}@{}}
+    \toprule
+    Phase & Window & Documents \\
+    \midrule
+    At registration & --- & Application form \\
+    Phase 1: Pre-qualification & January to April & Entrance exam result with an ``ACCEPTED'' remark; high school report card (second and third quarter) with a general average of at least 85\%; household income proof; Certificate of Award as Rank~1 or Rank~2 (Jubilee applicants) \\
+    Phase 2: Full Verification & May to enrollment & Proof of residence or photographs of residence; recommendation from the homeroom moderator; Certificate of Good Moral Character; BIR Form 2316 or sworn statement of income (GIA and Working Scholars); additional documents configured per cycle, such as a personal essay or an ethnolinguistic group endorsement where applicable \\ % TODO(OPEN-6): residence photos vs. proof; essay and ethnolinguistic endorsement still required?
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Three-Layer Screening and Committee Governance}
+\label{sec:governance}
+
+The system structures, filters, and presents applicant data, and people make every decision that changes an applicant's status. Table~\ref{tab:decision-boundary} sets this boundary for each function of the platform. Every status change is written to an audit log that records the acting user, the timestamp, and the prior and new status, so that each decision can be traced to a person during an institutional audit.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Decision Boundary Between System Functions and Human Decision-Makers}
+  \label{tab:decision-boundary}
+  \begin{tabular}{@{}p{3.4cm}p{6.6cm}p{4.4cm}@{}}
+    \toprule
+    Function & What the System Does & Who Decides \\
+    \midrule
+    Eligibility screening & Checks baseline criteria (85\% high school average, entrance exam remark, required documents) and flags results & University Scholarship Office staff confirm \\
+    Document verification & Stores uploads and shows a checklist per application & University Scholarship Office staff, internally only \\
+    Conditional Revert & Sends the notice, runs the 5-day clock, and marks a file ``Lapsed'' & Staff confirm any disapproval \\
+    Interview scoring & Records panel scores and recommendations & Interview panel \\
+    Selection & Presents applicant data, sorted and filtered by criteria the committee sets & School Scholarship Subcommittee \\
+    Waitlist and slot reallocation & Alerts the committee to a vacancy and proposes the next waitlisted candidate & School Scholarship Subcommittee \\
+    Track realignment and program transfer & Records the request and checks slot availability & Evaluators and the receiving school \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Evaluation proceeds through three layers. In Layer~1 (General System Verification), the system checks the baseline criteria: an entrance exam result with an ``ACCEPTED'' remark, a high school general average of at least 85\%, and the required documents. An applicant below the baseline, for example with an 84\% average, is not blocked at registration. The application enters a staff review queue, where a University Scholarship Office staff member records a disapproval or waitlist outcome and the applicant receives a notice.
+
+In Layer~2 (Interview Evaluation and Recommendation), interview panels record scores and submit formal recommendations. Following SOP step~5, the interview panel is assigned per application, and panel composition is a configurable setting of each cycle. % TODO(OPEN-2): school-based panels (SOP) vs. Scholarship Director and designated interviewers.
+The committee may configure a shortlisting rule that advances a proportion of the interviewed pool, such as the top 50\%, to Layer~3; the system applies no cut unless the committee enables one. % TODO(OPEN-7): is the top-50% cut a formal rule?
+
+In Layer~3 (School Subcommittee Selection), the system partitions applications by degree choice and presents each School Scholarship Subcommittee's data under that school's criteria (Table~\ref{tab:subcommittees}). An applicant whose two program choices fall under different schools appears in both partitions. The system encodes each school's criteria as a rule set that produces flags and sort orders for the committee; it does not produce a selection.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{School Scholarship Subcommittee Rule Sets}
+  \label{tab:subcommittees}
+  \begin{tabular}{@{}p{4.2cm}p{3.6cm}p{6.6cm}@{}}
+    \toprule
+    Subcommittee & Academic Focus & Selection Criteria Presented by the System \\
+    \midrule
+    School of Nursing (SON) & Nursing and allied health & Zero-conditional policy: conditional entrance exam scores are flagged for rejection; an optional 1-to-10 scoring matrix is available \\
+    School of Engineering and Architecture (SEA) & Engineering and architecture programs & Hard cutoffs on entrance exam scores; applicants below the minimum are flagged as not meeting the program requirement regardless of high school rank \\ % TODO(OPEN-4): which school houses Computer Science and IT.
+    School of Business and Governance (SBG) & Business and management & Entrance scores combined with financial need tiers and qualitative leadership and potential assessments \\
+    School of Education (SOE) & Teacher education & Academic performance weighed alongside commitment to community teaching service \\
+    School of Arts and Sciences (SAS) & Humanities, social sciences, and sciences & Academic potential and alignment with university leadership objectives, coordinated across the school's departments \\ % TODO(OPEN-4): four departments with Assistant Deans?
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The Jubilee Scholarship grant rate is fixed once a Rank~1 or Rank~2 certificate is verified. Program-specific admission minimums remain configurable per school, and when a Jubilee applicant does not meet a school's hard minimum, the system flags the conflict and the subcommittee's recorded decision stands. % TODO(OPEN-3): does the Jubilee guarantee override a hard entrance exam cutoff? TODO(OPEN-9): is the SOP "academic grant" the Jubilee track?
+
+\subsection{Conditional Revert Protocol}
+\label{sec:revert}
+
+A missing or illegible document no longer produces an abrupt rejection. Instead, every incomplete file receives five calendar days to be corrected before a staff member decides its outcome:
+
+\begin{enumerate}
+  \item A University Scholarship Office staff member finds a missing or illegible document during verification and sets the application status to Conditional Revert.
+  \item The platform sends an automated notice that lists each missing or illegible file.
+  \item The applicant has five calendar days to upload corrected files. The clock starts at a configurable event, by default the moment the notice is sent. % TODO(OPEN-8): when does the 5-day clock start?
+  \item Corrected files return the application to verification.
+  \item If nothing arrives within five days, the system marks the file ``Lapsed'' and alerts staff. A University Scholarship Office staff member confirms the disapproval.
+\end{enumerate}
+
+Listing~\ref{lst:lifecycle} specifies the application status state machine that enforces this protocol and the governance rule of Section~\ref{sec:governance}. Automated events may only move an application into the Conditional Revert or Lapsed states or raise alerts. Every transition into an outcome state requires a recorded human actor.
+
+\begin{lstlisting}[caption={Pseudocode of the application status state machine with human-confirmation guards},label={lst:lifecycle}]
+FUNCTION ChangeStatus(Application, NewStatus, Actor, Reason):
+    // Guard 1: outcome states always require a human actor
+    IF NewStatus IN {Disapproved, Waitlisted, Awarded, Endorsed} THEN
+        RequireHumanActor(Actor)       // reject if Actor is the system
+        RequireRole(Actor, AllowedRoles[Application.Status, NewStatus])
+    END IF
+
+    // Guard 2: only permitted transitions are accepted
+    IF (Application.Status, NewStatus) NOT IN AllowedTransitions THEN
+        REJECT "Transition not permitted"
+    END IF
+
+    AuditLog.APPEND(Application.ID, Actor, CURRENT_TIMESTAMP,
+                    Application.Status, NewStatus, Reason)
+    SET Application.Status = NewStatus
+    EmitEvent("StatusChanged", Application)
+ENDFUNCTION
+
+// Scheduled daily by the Cron worker (system actor)
+FUNCTION CheckRevertClocks():
+    FOR EACH Application WHERE Status == ConditionalRevert:
+        IF CURRENT_DATE > Application.RevertStart + 5 DAYS
+           AND Application.HasPendingCorrections THEN
+            SET Application.Status = Lapsed    // flag only, not a decision
+            AuditLog.APPEND(Application.ID, "system", CURRENT_TIMESTAMP,
+                            ConditionalRevert, Lapsed, "Revert window elapsed")
+            AlertStaff(Application)            // staff confirm disapproval
         END IF
     ENDFOR
+ENDFUNCTION
 
-    // Step 6: Compute fit-margin relevance score for secondary sorting
-    FOR EACH Grant IN EligibleGrants:
-        SET margin_QPI = s_QPI - Grant.MinimumQPI
-            // Higher = stronger academic fit
-        SET margin_Income = Grant.MaximumIncome - s_Income
-            // Higher = stronger financial fit
-        // Normalize and combine margins into a single relevance score.
-        // Weights can be adjusted; equal weighting used here as a baseline.
-        SET Grant.FitScore = (margin_QPI * 0.5) + (margin_Income / 10000 * 0.5)
-    ENDFOR
-
-    // Step 7: Return list sorted by deadline (primary), then by fit score (secondary)
-    // Primary sort ensures time-critical grants appear first;
-    // secondary sort differentiates between equally urgent grants by match strength.
-    RETURN SORT(EligibleGrants,
-                PRIMARY BY Grant.Deadline ASCENDING,
-                SECONDARY BY Grant.FitScore DESCENDING)
+// Triggered when an awardee declines
+FUNCTION OnAwardDeclined(Application):
+    FreeSlot(Application.Program, Application.Track)
+    Candidate = NextWaitlisted(Application.School, Application.Track)
+    AlertSubcommittee(Application.School, ProposedCandidate = Candidate)
+    // No award is made until the subcommittee calls ChangeStatus
 ENDFUNCTION
 \end{lstlisting}
- To provide a clearer visualization of this process, the sequential logic and decision gates of the automated matching engine are mapped out in Figure 3 below. \begin{figure}[htbp]
+
+\subsection{Scholar Movement, Track Realignment, and Slot Management}
+\label{sec:movement}
+
+The system supports three movement protocols (Table~\ref{tab:movement}). In each, the system records the change and alerts the responsible party immediately, and a person makes the decision.
+
+\begin{table}[htbp]
   \centering
-  \includegraphics[width=0.72\textwidth]{figure3_flowchart.png}
-  \caption{Logic Flowchart of the ScholarPath AdDU Smart Eligibility Checker}
-  \label{fig:flowchart}
-\end{figure} As illustrated in Figure 3, the algorithm prioritizes the evaluation of hard constraints (QPI and household income) before moving to conditional constraints (degree program and exclusion flags). This structured flow ensures that the system efficiently filters out incompatible grants early in the process, minimizing database load and preventing mismatched applications from reaching the student's dashboard. Grants that pass all constraint checks are not returned on equal footing: the algorithm computes a fit-margin relevance score for each eligible grant, calculated from the degree to which the student's QPI exceeds the grant's minimum threshold and the degree to which the student's household income falls below the grant's maximum ceiling. The final output is sorted by deadline (ascending) as the primary key --- ensuring time-critical opportunities appear first --- and by fit score (descending) as the secondary key, so that among equally urgent grants, those where the student's profile most strongly satisfies the criteria are ranked higher. This differentiates ScholarPath AdDU from a binary pass/fail filter and provides students with a relevance-ordered, not merely deadline-ordered, scholarship dashboard.
+  \small
+  \caption{Scholar Movement Protocols}
+  \label{tab:movement}
+  \begin{tabular}{@{}p{2.6cm}p{4.3cm}p{4.0cm}p{3.5cm}@{}}
+    \toprule
+    Protocol & Example & System Action & Decision By \\
+    \midrule
+    Inter-track realignment & A Working Scholar candidate with high financial need and strong academic merit is moved to Grant-in-Aid & Records the change and keeps the history of the applicant's track & Evaluators during screening \\
+    External grant program transfer & A DOST awardee must enroll in a specific STEM field, so the applicant moves from Nursing to an engineering program & Checks slot availability in the destination program and records the transfer & Receiving school, subject to slot availability \\
+    Waitlist and slot reallocation & A primary awardee declines after receiving an offer from another institution & Frees the slot, alerts the subcommittee, and proposes the next waitlisted candidate & School Scholarship Subcommittee confirms; the candidate is notified after confirmation \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-\subsection{Dynamic Faceted Search and Backend Indexing Strategy}
+\subsection{Committee Filtering and Backend Indexing Strategy}
+\label{sec:filtering}
 
-To resolve the discovery friction caused by relying on basic keyword searches, ScholarPath AdDU employs a Dynamic Faceted Search architecture. This allows students to apply multiple intersecting filters (e.g., ``State-Sponsored Grants'' + ``Active Deadlines'' + ``Full Tuition Coverage'') to instantly narrow down the 54 available pipelines without system latency. Backend Database Categorization: The database normalizes the scholarship data by strictly categorizing the 54 pipelines into four primary metadata facets based on their funding origin: Internally Funded Endowments, Corporate \& External Foundations, State-Sponsored Grants, and Specialized Service Pipelines. (The exhaustive tabular dataset utilized to construct these database facets is detailed in Appendix A). Indexing Strategy for Real-Time Retrieval: To ensure real-time rendering without lag, the system's backend database (e.g., Supabase) utilizes Compound Indexing . Instead of scanning the entire database for every search query time complexity), the database pre-sorts records based on frequently queried combinations.
+To let the University Scholarship Office and each School Scholarship Subcommittee review approximately 1,326 applications per cycle without manual collation, the Data-Feeding Committee Portal exposes applicant records through intersecting filters (e.g., ``School = SEA'' + ``Track = GIA'' + ``Verification Status = Complete''). The available facets are school, track, program choice, lifecycle status, verification status, interview score, and screening flags. The sort order and filter criteria are set by the committee, not by the system. Indexing Strategy for Real-Time Retrieval: to ensure real-time rendering, the Supabase backend uses compound indexing, pre-sorting records on frequently queried combinations instead of scanning the entire table for every query.
 
 \begin{itemize}
-  \item B-Tree Indexes are applied to exact-match categorical fields (e.g., Grant\_Category and Status).
-  \item Range Indexes are applied to continuous numerical fields (e.g., QPI\_Requirement and Application\_Deadline).
-  \item Client-Side Caching \& Debouncing: The frontend interface utilizes asynchronous JavaScript (AJAX/Fetch) combined with an input debounce of 300 milliseconds. This ensures that the database is only queried after the user finishes typing or selecting facets, drastically reducing server load and preventing UI stuttering.
+  \item B-Tree Indexes are applied to exact-match categorical fields (e.g., \texttt{School\_Code}, \texttt{Track}, and \texttt{Status}).
+  \item Range Indexes are applied to continuous numerical and temporal fields (e.g., \texttt{HS\_Average}, \texttt{Interview\_Score}, and \texttt{Revert\_Start}).
+  \item Client-Side Caching and Debouncing: The frontend interface uses asynchronous JavaScript (Fetch) combined with an input debounce of 300 milliseconds, so the database is queried only after the user finishes selecting facets, reducing server load and preventing interface stutter.
 \end{itemize}
 
 \subsection{System Architecture and Cloud Infrastructure}
+\label{sec:cloud}
 
-To resolve the operational bottlenecks caused by the physical submission of dense paperwork, such as Form 230-SCH and government-stamped tax returns, ScholarPath AdDU employs a secure, cloud-based architecture. The integration of the database, storage, and external communication services is mapped in Figure 4 below. \begin{figure}[htbp]
+To resolve the operational bottlenecks caused by the physical submission of dense paperwork, ScholarPath AdDU employs a secure, cloud-based architecture. The integration of the database, storage, and communication services is mapped in Figure~\ref{fig:architecture}.
+
+\begin{figure}[htbp]
   \centering
+  % TODO(FIG): redraw figure4_architecture.png -- relabel the client apps as
+  % "Applicant/Scholar App" and "Committee Portal"; add an Audit Log store in
+  % the backend layer; keep no external verification service.
   \includegraphics[width=0.9\textwidth]{figure4_architecture.png}
   \caption{High-Level System Architecture of ScholarPath AdDU}
   \label{fig:architecture}
-\end{figure} Technical Stack and Storage: The system is built on a three-layer technical stack selected for its cohesion and rapid prototyping capabilities. At the client layer, Vite serves as the frontend build tool, paired with a component-based JavaScript framework (React or Vue) to produce a fast, modular web interface. For cross-platform mobile deployment, Capacitor wraps this same Vite production build into native Android and iOS applications, eliminating the need to maintain a separate mobile codebase. At the backend layer, Supabase serves as the core Backend-as-a-Service (BaaS) infrastructure, providing a hosted PostgreSQL relational database for system state and metadata, Supabase Storage for large object files (i.e., the Document Vault), and Supabase Auth integrated natively with Row Level Security (RLS) policies. This unified ecosystem was selected for its seamless integration of database, storage, and security layers within a single managed service. Metadata Tagging and Virtual Attachment : To eliminate redundant file uploads, the Document Vault operates on a ``one-time upload, multi-attach'' architecture. When a student uploads a prerequisite document, the physical file is securely stored exactly once in a dedicated Supabase Storage bucket. The system generates a unique, secure file path for this object. Instead of duplicating the physical file for every new scholarship application, the PostgreSQL database utilizes metadata tagging. A Documents table records the file's metadata (e.g., StudentID, DocumentType, UploadTimestamp, and the Storage\_Path). When a student applies for multiple scholarships, the system simply creates a relational link (a foreign key) in the Applications table pointing back to the single original document record. This highly normalized architecture ensures optimized storage limits and rapid retrieval times for the Office of Student Affairs (OSA). Income Document Verification Workflow: The Document Vault's handling of proof-of-income documents follows a structured, administrator-validated verification process to ensure that scholarship applications are not processed on the basis of unreviewed financial data. When a student uploads a proof-of-income document --- such as a BIR-stamped Income Tax Return (ITR) --- to the Document Vault, the document is automatically assigned a verification status of Pending in the Documents table. An OSA Administrator subsequently reviews the uploaded document through the admin dashboard, examining it against the requirements of the applicable scholarship. The administrator then manually updates the document's verification status to either Verified or Rejected based on their assessment. Scholarship applications linked to documents with a verification status of Pending or Rejected cannot proceed to final processing by the OSA. This workflow ensures that the eligibility matching engine operates on validated financial data while preserving the administrative authority of the OSA over the authenticity determination --- a distinction that cannot be automated without integration with official government tax databases, which is outside the current system scope. 3.3.4 Role-Based Access Control (RBAC) and Data Privacy Compliance Because the ScholarPath AdDU platform processes highly sensitive economic and academic data, its architecture is fundamentally governed by the Philippine Data Privacy Act of 2012 (RA 10173). Encryption and Row Level Security (RLS): To ensure strict compliance and secure data handling, the system relies on Supabase Auth and PostgreSQL's native security features. All data in transit is secured using Transport Layer Security (TLS). Furthermore, access to sensitive data at rest --- both within the database tables and the Supabase Storage buckets --- is restricted using Row Level Security (RLS) policies. RLS ensures that access controls are enforced directly at the database level, preventing unauthorized queries regardless of how the frontend application is accessed. RBAC Permissions Matrix : To enforce the principle of least privilege, the system utilizes a strict Role-Based Access Control (RBAC) architecture. Upon authentication, users are assigned distinct, immutable privileges based on their specific role within the university, which are directly mapped to the database RLS policies. Table 3: ScholarPath AdDU Role-Based Access Control (RBAC) Matrix User Role Data Access Privileges Core System Actions Undergraduate Students Read/Write (Self Only): Can view and edit their own academic/financial profiles and uploaded documents. Blocked by RLS from viewing other users' data. Search for grants, upload files to personal Document Vault, submit applications, view application status. OSA Administrators Read/Write (Global): Full authorized access to view all submitted student applications, verified documents, and system-wide scholarship parameters. Approve/reject applications; review uploaded proof-of-income documents and manually update verification status to Verified or Rejected via the admin dashboard (documents remain in Pending status until this action is taken, blocking final application processing); broadcast announcements; trigger manual notifications; extract analytical reports. Department Chairs \& Coordinators Read (Restricted): Can only view the aggregated academic and economic profiles of applicants within their specific department. Filter and assess economic statuses specifically for Grant-in-Aid (GIA) selections, submit official endorsements to OSA.
+\end{figure}
+
+Technical Stack and Storage: The system is built on a three-layer technical stack selected for its cohesion and rapid prototyping capabilities. At the client layer, Vite serves as the frontend build tool, paired with a component-based JavaScript framework (React or Vue), and provides two interfaces: the applicant and scholar application, and the Data-Feeding Committee Portal used by University Scholarship Office staff, interview panels, School Scholarship Subcommittees, and the Office of Admission. For cross-platform mobile deployment, Capacitor wraps the same Vite production build into native Android and iOS applications. At the backend layer, Supabase serves as the core Backend-as-a-Service (BaaS) infrastructure, providing a hosted PostgreSQL relational database for system state, metadata, and the audit log; Supabase Storage for large object files (the Document Vault); and Supabase Auth integrated natively with Row Level Security (RLS) policies.
+
+Metadata Tagging and Phase-Aware Storage: When an applicant uploads a document, the physical file is stored exactly once in a dedicated Supabase Storage bucket under a unique, secure path. A Documents table records the file's metadata (e.g., \texttt{ApplicantID}, \texttt{DocumentType}, \texttt{Phase}, \texttt{UploadTimestamp}, \texttt{Verification\_Status}, and \texttt{Storage\_Path}), and the Applications table links to it by foreign key. A corrected file uploaded during a Conditional Revert is stored as a new version linked to the same requirement, preserving the history of what was submitted and when.
+
+Document Verification Workflow: Every uploaded document, including proof-of-income documents such as BIR Form 2316 or a sworn statement, is automatically assigned a verification status of Pending. A University Scholarship Office staff member reviews the document through the Committee Portal and manually updates its status to Verified, or sets the application to Conditional Revert if the document is missing or illegible. Applications with Pending or unresolved documents cannot be endorsed to interview scheduling. All verification is performed internally by the University Scholarship Office; the platform integrates with no external verification service.
+
+\subsection{Role-Based Access Control (RBAC) and Data Privacy Compliance}
+\label{sec:rbac}
+
+Because the ScholarPath AdDU platform processes highly sensitive economic and academic data, its architecture is governed by the Philippine Data Privacy Act of 2012 (RA 10173). Encryption and Row Level Security (RLS): All data in transit is secured using Transport Layer Security (TLS). Access to sensitive data at rest, in both database tables and Supabase Storage buckets, is restricted using RLS policies, so access controls are enforced directly at the database level regardless of how the frontend is accessed. RBAC Permissions Matrix: To enforce the principle of least privilege, users are assigned distinct privileges based on their role within the university, mapped directly to database RLS policies (Table~\ref{tab:rbac}).
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{ScholarPath AdDU Role-Based Access Control (RBAC) Matrix}
+  \label{tab:rbac}
+  \begin{tabular}{@{}p{3.2cm}p{5.2cm}p{6.0cm}@{}}
+    \toprule
+    User Role & Data Access Privileges & Core System Actions \\
+    \midrule
+    Applicant / Scholar & Read/write, self only & Register, choose a track and up to two programs, upload Phase~1 and Phase~2 documents, respond to Conditional Revert notices, view status and Academic Trajectory Path \\
+    University Scholarship Office staff & Read/write, all applications & Verify documents, set Conditional Revert, confirm Lapsed disapprovals, record Layer~1 outcomes, endorse applications to interview, broadcast announcements \\
+    Interview Panel & Read, assigned applications only; write, own scores & Record interview scores and recommendations \\
+    School Scholarship Subcommittee & Read, own school's partition; write, own decisions & Filter and sort applicants, record selection decisions, confirm waitlist reallocations, send the accepted list to the Office of Admission \\
+    Office of Admission & Read, accepted lists & Release results, which triggers applicant notifications \\
+    System Administrator & Configuration only & Configure cycle windows, rule sets, and roles; no authority over applicant status \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \subsection{Automated Notification Subsystem}
+\label{sec:notifications}
 
-The absence of proactive alerts frequently results in missed application deadlines and subsequent student attrition. To rectify this, ScholarPath AdDU integrates an automated, multi-channel notification subsystem designed to deliver critical deadline alerts and status updates via SMS and email, without requiring manual administrative intervention. Third-Party API Integration: The system leverages enterprise-grade communication APIs to ensure reliable message delivery. The SendGrid API is utilized to format and dispatch detailed, formal email notifications regarding application outcomes and institutional updates. For time-sensitive alerts, such as approaching 48-hour deadlines, the system integrates the Twilio SMS API to push brief, immediate text messages directly to the student's registered mobile device. Automated Trigger Logic and Edge Functions: To interface with the Supabase backend, the notification engine is driven by automated task schedulers (Cron jobs) and Supabase Edge Functions. The trigger logic evaluates two primary conditions: 1. Deadline Proximity: A scheduled backend worker queries the database daily. If the Current\_Date is within a predefined threshold (e.g., 3 days) of a Grant.Deadline AND the user has an application marked as Status = 'Draft', the system executes an Edge Function to send a ``Deadline Reminder'' payload via the Twilio API. 2. Status Mutation: Whenever an OSA Administrator changes an application status in the database (e.g., from 'Pending' to 'Approved'), a database webhook immediately triggers an Edge Function. This function compiles the relevant context and pushes a ``Status Update'' payload to the SendGrid API, delivering the official results to the student's inbox.
+The absence of proactive alerts frequently results in missed submission windows and uncorrected files. ScholarPath AdDU integrates an automated, multi-channel notification subsystem that delivers deadline reminders, correction notices, and status updates via SMS and email. Third-Party API Integration: The SendGrid API formats and dispatches detailed email notifications, and the Twilio SMS API pushes brief, time-sensitive text messages to the applicant's registered mobile device. These services deliver messages only; they take no part in verification or decisions. Automated Trigger Logic and Edge Functions: The notification engine is driven by scheduled tasks (Cron jobs) and Supabase Edge Functions evaluating three conditions:
+
+\begin{enumerate}
+  \item Deadline Proximity: A scheduled worker queries the database daily. If the current date is within a predefined threshold (e.g., three days) of the close of the Phase~1 or Phase~2 window and the applicant has outstanding documents, an Edge Function sends a reminder via Twilio.
+  \item Conditional Revert Clock: When staff set an application to Conditional Revert, an Edge Function sends the correction notice listing each missing or illegible file, followed by reminders within the five-day window. When the window elapses, the Lapsed flag triggers an alert to University Scholarship Office staff rather than a message to the applicant.
+  \item Status Mutation: When a human actor commits a status change, a database webhook triggers an Edge Function. Selection outcomes are withheld from applicants until the Office of Admission records the release of results, after which the award, waitlist, or disapproval notice is sent via SendGrid. A waitlisted candidate is notified of a reallocated slot only after the subcommittee confirms the reallocation. % TODO(OPEN-8): notification timing after the Office of Admission release.
+\end{enumerate}
 
 \section{Testing \& Evaluation Procedures: ISO/IEC 25010 Task-Based Usability Protocol}
+\label{sec:testing}
 
-To assess the functional suitability and usability of the ScholarPath AdDU system, the study employs a mixed-method evaluation approach. This methodology combines task-based observational testing with a standardized System Usability Scale (SUS) questionnaire, administered to a purposive sample of approximately 10 to 15 end-users. This sample size ensures sufficient data saturation and will consist of undergraduate students, active Office of Student Affairs (OSA) administrators, and selected Department Chairs to guarantee comprehensive coverage of the system's multi-role interfaces.
+To assess the functional suitability and usability of the ScholarPath AdDU system, the study employs a mixed-method evaluation approach. This methodology combines task-based observational testing with a standardized System Usability Scale (SUS) questionnaire, administered to a purposive sample of approximately 10 to 15 end-users. The sample will consist of current or recent scholarship applicants, University Scholarship Office staff, and School Scholarship Subcommittee members, to guarantee coverage of the system's multi-role interfaces.
 
 \subsection{Step-by-Step Testing Procedure}
+\label{sec:procedure}
 
-\begin{itemize}
-  \item The evaluation will be conducted in a controlled environment following a standardized script to prevent researcher bias. The procedure is outlined as follows: 1. Briefing and Consent: Participants are introduced to the system's purpose. The facilitator explicitly states that the system is being tested, not the user, and secures informed consent. 2. Task Execution: Participants are asked to complete four specific, real-world scenarios designed to test core system features. The facilitator observes silently without offering assistance unless a critical failure occurs.
-  \item Task 1: Profile Registration: The user must create a new account, inputting required academic and socioeconomic data, such as QPI, household income, and degree program.
-  \item Task 2: Document Upload: The user navigates to the Document Vault and successfully uploads a standardized test file (e.g., a mock Form 230-SCH) , verifying that the system securely stores the file and registers the metadata appropriately.
-  \item Task 3: Dynamic Search and Application: The user utilizes the dynamic faceted search to filter the available funding pipelines to locate a specific ``Corporate \& External Foundation'' grant and successfully submit an application.
-  \item Task 4: Admin Dashboard Navigation (OSA Admin Only): The user logs into the admin portal , navigates to pending applications, and changes the status of a specific student application from ``Pending'' to ``Approved'' to trigger the automated notification subsystem. 3. Observational Data Collection: During the execution of Tasks 1 through 4, the facilitator records specific usability metrics (detailed in Section 3.4.2). 4. Post-Session Instruments: Immediately after completing the four tasks, participants are administered two sequential instruments in the following order. First, the participant completes the standardized 10-item System Usability Scale (SUS) questionnaire to assess overall subjective perceived usability of the ScholarPath AdDU interface. The SUS is administered first because it captures the participant's holistic impression of the system immediately after task completion, before any comparative framing is introduced. Second, the participant completes the Post-Prototype Perceived Effort Survey (Appendix C) , which asks them to estimate the time and effort required by the digital process and to compare that perception against the manual experience they described in the pre-study. These are presented as two distinct instruments and are not to be conflated: the SUS measures general interface usability, while Appendix C generates the comparative data used to answer Research Questions 1, 2, and 3. 5. Debriefing: A brief, semi-structured exit interview is conducted to gather qualitative feedback on any frustrations or difficulties encountered.
-\end{itemize}
+The evaluation will be conducted in a controlled environment following a standardized script to prevent researcher bias. The procedure is outlined as follows:
+
+\begin{enumerate}
+  \item Briefing and Consent: Participants are introduced to the system's purpose. The facilitator explicitly states that the system is being tested, not the user, and secures informed consent.
+  \item Task Execution: Participants complete the tasks for their role. The facilitator observes silently without offering assistance unless a critical failure occurs.
+  \begin{itemize}
+    \item Task 1: Applicant Registration (applicants): The user creates an account, completes the application form, and selects one internal track and up to two degree programs.
+    \item Task 2: Two-Stage Document Submission (applicants): The user uploads the Phase~1 documents, then the Phase~2 documents, and responds to a Conditional Revert notice by uploading a corrected file.
+    \item Task 3: Verification and Conditional Revert (University Scholarship Office staff): The user verifies an application's documents, sets a Conditional Revert on an application with a missing file, and confirms the disapproval of a Lapsed application.
+    \item Task 4: Committee Review and Reallocation (School Scholarship Subcommittee members): The user filters the school's partition, records a selection decision, and confirms a proposed waitlist reallocation after an awardee declines.
+  \end{itemize}
+  \item Observational Data Collection: During task execution, the facilitator records the usability metrics detailed in Section~\ref{sec:analysis}.
+  \item Post-Session Instruments: Immediately after completing the tasks, participants complete the standardized 10-item System Usability Scale (SUS) questionnaire first, capturing their holistic impression before any comparative framing is introduced. Applicant participants then complete the Post-Prototype Perceived Effort Survey (Appendix~\ref{app:post-survey}); staff and subcommittee participants complete the Committee Portal Usefulness Survey (Appendix~\ref{app:committee-survey}). These instruments are not to be conflated: the SUS measures general interface usability, while the role-specific surveys generate the comparative and perception data used to answer Research Questions 1 through 3.
+  \item Debriefing: A brief, semi-structured exit interview is conducted to gather qualitative feedback on any frustrations or difficulties encountered.
+\end{enumerate}
 
 \subsection{Data Analysis and Statistical Tools}
+\label{sec:analysis}
 
-. To objectively quantify the system's performance and user satisfaction, the following metrics and statistical tools will be utilized:
+To objectively quantify the system's performance and user satisfaction, the following metrics and statistical tools will be utilized:
 
 \begin{itemize}
   \item Quantitative Observational Metrics:
   \begin{itemize}
-    \item Time-on-Task: Measured in seconds, this records the exact duration a user takes to successfully complete each of the four designated tasks.
+    \item Time-on-Task: Measured in seconds, this records the duration a user takes to successfully complete each designated task.
     \item Error Rates: Calculated as the number of misclicks, failed uploads, or incorrect navigation paths taken per task, as well as the overall percentage of users who fail to complete a task independently.
-    \item Notification Delivery Success Rate: Measured during Task 4 (Admin Dashboard Navigation, Section 3.4.1), this metric records the percentage of triggered notification events --- specifically, application status mutations from 'Pending' to 'Approved' executed by the OSA Administrator participant --- that result in a successfully dispatched notification to the student's registered contact channel (SMS via Twilio or email via SendGrid) within the testing session. The facilitator confirms delivery by verifying receipt on the designated student-side test device. The metric is computed as: (Number of Successfully Delivered Notifications / Total Triggered Notification Events) $\times$ 100. A delivery success rate of 100\% across the testing session is the target threshold, given the controlled, low-concurrency testing environment.
-    \item Trigger-to-Delivery Latency: Recorded in seconds, this measures the elapsed time between the moment an OSA Administrator participant commits a status mutation in the admin dashboard (the event trigger) and the moment the corresponding notification is confirmed as received on the student-side test device (the delivery confirmation). The facilitator records both timestamps manually during Task 4. Mean latency across all triggered events in the session is computed and reported. This metric operationalizes the performance efficiency dimension of the notification subsystem as distinct from overall system response time.
+    \item Notification Delivery Success Rate: Measured during Tasks 3 and 4, this metric records the percentage of triggered notification events (the Conditional Revert notice sent when a staff participant sets the status, and the outcome notice sent after a simulated Office of Admission release) that result in a successfully dispatched notification to the applicant's registered contact channel within the testing session. The facilitator confirms delivery on the designated applicant-side test device. The metric is computed as: (Number of Successfully Delivered Notifications / Total Triggered Notification Events) $\times$ 100. A delivery success rate of 100\% is the target threshold, given the controlled, low-concurrency testing environment.
+    \item Trigger-to-Delivery Latency: Recorded in seconds, this measures the elapsed time between the moment a staff participant commits a status change (the event trigger) and the moment the corresponding notification is confirmed as received on the applicant-side test device. Mean latency across all triggered events in the session is computed and reported, operationalizing the performance efficiency of the notification subsystem as distinct from overall system response time.
   \end{itemize}
   \item System Usability Scale (SUS) Analysis:
   \begin{itemize}
-    \item The SUS provides a validated instrument for measuring participants' subjective perceived usability of the platform. Responses are gathered on a standard 5-point Likert scale across 10 items, with alternating positive and negative phrasing to reduce response bias. Raw SUS scores, ranging from 0 to 100, will be analyzed using descriptive statistics. The Mean will be calculated to determine the average perceived usability score across the purposive sample, providing an overall benchmark of system acceptability. To contextualize the resulting mean SUS score, the study will apply the adjective rating scale validated by Bangor et al. \cite{ref13}, which maps numerical ranges to descriptive quality grades: scores of 85 and above are classified as Excellent, 71 -- 84 as Good, 50 -- 70 as OK, and below 50 as indicative of usability failure requiring significant redesign. A target mean SUS score of 71 or higher --- the Good threshold --- is set as the minimum benchmark for the ScholarPath AdDU prototype to be considered functionally acceptable for its intended user base. The Standard Deviation will measure the variance in scores, indicating the degree of consensus among participants regarding the system's subjective usability. It is important to note that the SUS addresses Research Question 4 specifically --- overall system usability and performance efficiency --- and is analytically distinct from the pre/post comparative instruments described below, which address Research Questions 1 through 3.
+    \item The SUS provides a validated instrument for measuring participants' subjective perceived usability of the platform. Responses are gathered on a standard 5-point Likert scale across 10 items, with alternating positive and negative phrasing to reduce response bias. Raw SUS scores, ranging from 0 to 100, will be analyzed using descriptive statistics. The Mean will be calculated to determine the average perceived usability score across the purposive sample. To contextualize the resulting mean SUS score, the study will apply the adjective rating scale validated by Bangor et al. \cite{ref13}: scores of 85 and above are classified as Excellent, 71--84 as Good, 50--70 as OK, and below 50 as indicative of usability failure requiring significant redesign. A target mean SUS score of 71 or higher (the Good threshold) is set as the minimum benchmark for the prototype to be considered functionally acceptable for its intended user base. The Standard Deviation will measure the variance in scores, indicating the degree of consensus among participants. The SUS addresses Research Question 4 specifically and is analytically distinct from the comparative instruments described below.
   \end{itemize}
-  \item Functional Correctness Evaluation (Smart Eligibility Checker Test Case Matrix)
+  \item Functional Correctness Evaluation (Lifecycle Test Case Matrix):
   \begin{itemize}
-    \item To directly assess whether the automated matching engine executes the Exclusion Flag Hierarchy without generating false positives or incorrect recommendations --- corresponding to the Functional Correctness sub-characteristic in Table 8 (ISO/IEC 25010) --- the study employs a structured test case matrix administered separately from the user-facing usability session. Fifteen representative synthetic student profiles are constructed to cover the full range of eligibility edge cases: (1) QPI exactly at the grant's minimum threshold; (2) QPI one decimal point below the minimum threshold; (3) household income exactly at the grant's maximum ceiling; (4) household income one unit above the ceiling; (5) degree program explicitly listed in a grant's eligible degrees; (6) degree program explicitly listed in a grant's exclusion list; (7) degree program absent from both eligible and excluded lists where the grant specifies ``ALL''; (8) student holding a concurrent active government grant applying to a grant where AllowsMultipleGrants = FALSE ; (9) student holding a concurrent active government grant applying to a grant where AllowsMultipleGrants = TRUE ; (10) student profile satisfying all base criteria but triggering a degree-specific exclusion flag; (11) an expired grant ( Deadline \textless{} CURRENT\_DATE ) that should be skipped regardless of eligibility; (12) a grant marked IsActive = FALSE ; (13) a student meeting no criteria for any grant (null result expected); (14) a student meeting criteria for multiple grants simultaneously, verifying correct multi-result output; and (15) a student whose profile satisfies both a broadly inclusive rule and a specific exclusion flag simultaneously, verifying that the exclusion unconditionally overrides the inclusion.
-    \item For each profile, the expected system output --- either a specific set of matched grants or an empty result --- is documented prior to test execution. The actual system output is then recorded and compared against the expected output. A match constitutes a pass; any discrepancy constitutes a failure and is logged for root cause analysis. The Functional Correctness score is computed as: (Number of Passing Test Cases / Total Test Cases) $\times$ 100. A minimum pass rate of 100\% on the exclusion-flag test cases (profiles 6, 8, 10, 11, 12) is set as the non-negotiable threshold, as false positives on exclusion logic constitute the highest-risk failure mode of the matching engine.
+    \item To assess whether the application status state machine (Listing~\ref{lst:lifecycle}) executes the Application Lifecycle Path correctly and never changes an applicant's status without a recorded human actor, corresponding to the Functional Correctness sub-characteristic of ISO/IEC 25010 (Table~\ref{tab:iso25010}), the study employs a structured test case matrix administered separately from the user-facing usability session (Table~\ref{tab:lifecycle-tests}). For each case, the expected system output is documented prior to test execution; the actual output is then recorded and compared. A match constitutes a pass; any discrepancy constitutes a failure and is logged for root cause analysis. The Functional Correctness score is computed as: (Number of Passing Test Cases / Total Test Cases) $\times$ 100. A pass rate of 100\% on the human-confirmation cases (TC-05, TC-07, TC-12, TC-13, and TC-16) is set as the non-negotiable threshold, because a status change without a recorded human actor is the highest-risk failure mode of the platform.
   \end{itemize}
   \item Pre/Post Comparative Survey Analysis:
   \begin{itemize}
-    \item The Pre-Study Student Problem Validation Survey (Appendix B) and the Post-Prototype Perceived Effort Survey (Appendix C) together constitute the comparative data collection instruments for Research Questions 1, 2, and 3. Because both instruments use structurally parallel items with identical scale anchors, their data is analyzed through direct item-level mean comparisons using descriptive statistics.
-    \item For Component 1 of both instruments (the ordinal time-estimation scale), the distribution of responses across the five ordinal ranges will be tabulated for both the pre- and post-prototype conditions. The modal response category and the direction of shift --- whether participants perceive the digital process as taking less, equal, or more time --- will be reported to address RQ1.
-    \item For Component 2 of both instruments (the six-item perceived effort Likert grid), the Mean score per sub-task item will be calculated for both conditions and presented in a side-by-side comparison table. A decrease in mean score from pre- to post-prototype on a given sub-task indicates a perceived reduction in effort for that application stage. Sub-task items 1 and 3 through 5 inform RQ1; sub-task item 2 (eligibility criteria determination) informs RQ2; and sub-task item 6 (deadline tracking) informs RQ3.
-    \item For Component 3 of the pre-study instrument and Component 3 of the post-prototype instrument, frequency distributions will be used for the categorical items concerning application mismatch history (RQ2) and deadline-miss history (RQ3). The proportion of participants who reported previously submitting ineligible applications will be compared against the proportion who indicated the Smart Eligibility Checker would prevent such errors. Similarly, the proportion who reported previously missing deadlines will be compared against post-prototype responses on the notification subsystem's perceived effectiveness.
-    \item For Component 4 of the post-prototype instrument (the overall comparative perception item), a frequency distribution of responses across the five-point scale --- from Much Less Effort to Much More Effort --- will be reported as a summary indicator of the system's perceived overall impact, synthesizing the findings of RQ1 through RQ3.
+    \item The Pre-Study Student Problem Validation Survey (Appendix~\ref{app:pre-survey}) and the Post-Prototype Perceived Effort Survey (Appendix~\ref{app:post-survey}) together constitute the comparative data collection instruments for Research Questions 1 and 3. Because both instruments use structurally parallel items with identical scale anchors, their data is analyzed through direct item-level comparisons using descriptive statistics.
+    \item For Component 1 of both instruments (the ordinal time-estimation scale), the distribution of responses across the five ordinal ranges will be tabulated for both conditions. The modal response category and the direction of shift will be reported to address RQ1.
+    \item For Component 2 of both instruments (the six-item perceived effort Likert grid), the Mean score per sub-task item will be calculated for both conditions and presented in a side-by-side comparison table. A decrease in mean score from pre- to post-prototype indicates a perceived reduction in effort for that application stage. Sub-task items 1 through 5 inform RQ1, and sub-task item 6 (deadline and correction tracking) informs RQ3.
+    \item For Component 3 of both instruments, frequency distributions will be used for the categorical items concerning incomplete-document history and missed-deadline history (RQ3). The proportion of participants who reported an application delayed or rejected because of a missing or illegible document will be compared against the proportion who indicated that the Conditional Revert notice would let them correct such a file in time. Similarly, the proportion who reported missing deadlines will be compared against post-prototype responses on the notification subsystem's perceived effectiveness.
+    \item For Component 4 of the post-prototype instrument (the overall comparative perception item), a frequency distribution of responses across the five-point scale will be reported as a summary indicator of the system's perceived overall impact.
   \end{itemize}
-  \item Qualitative Data Analysis (Thematic Analysis): While the SUS provides a quantitative benchmark, the qualitative feedback gathered during the post-task semi-structured exit interviews will be processed using thematic analysis. The researchers will transcribe user comments and categorize them into recurring themes (e.g., ``Navigation Friction,'' ``Terminology Confusion,'' or ``Positive Interface Feedback''). Identifying these qualitative themes will provide contextual explanations for the quantitative error rates and guide the final iterative refinements of the system's user interface prior to deployment.
+  \item Committee Portal Usefulness Analysis: Responses to the Committee Portal Usefulness Survey (Appendix~\ref{app:committee-survey}) will be summarized as item means and standard deviations to address RQ2(b).
+  \item Qualitative Data Analysis (Thematic Analysis): The qualitative feedback gathered during the post-task semi-structured exit interviews will be processed using thematic analysis. The researchers will transcribe participant comments and categorize them into recurring themes (e.g., ``Navigation Friction,'' ``Terminology Confusion,'' or ``Positive Interface Feedback''). These themes will provide contextual explanations for the quantitative error rates and guide the final iterative refinements of the system's user interface prior to deployment.
 \end{itemize}
 
-\subsection{Pre-Study Student Problem Validation Survey and Post-Prototype Perceived Effort Survey}
+\begin{longtable}{@{}p{1.2cm}p{6.6cm}p{6.6cm}@{}}
+  \caption{Lifecycle Test Case Matrix}\label{tab:lifecycle-tests}\\
+  \toprule
+  ID & Test Profile & Expected System Output \\
+  \midrule
+  \endfirsthead
+  \toprule
+  ID & Test Profile & Expected System Output \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  TC-01 & High school average exactly 85\%, entrance exam ``ACCEPTED'', all Phase~1 documents & No baseline flag; application proceeds to Phase~2 \\
+  TC-02 & High school average 84\% & Registration not blocked; application enters the staff review queue with a below-baseline flag; no status change until staff act \\
+  TC-03 & Entrance exam result without an ``ACCEPTED'' remark & Baseline flag raised; application enters the staff review queue \\
+  TC-04 & Jubilee applicant without a Rank~1 or Rank~2 certificate & Missing-document flag on the Jubilee requirement; application cannot be endorsed \\
+  TC-05 & Phase~2 document missing; staff set Conditional Revert & Status becomes Conditional Revert; notice lists the missing file; audit log records the staff actor \\
+  TC-06 & Corrected file uploaded on day~5 of the Revert window & Application returns to verification; no Lapsed flag \\
+  TC-07 & No correction by day~6 & Status becomes Lapsed and staff are alerted; status does not become Disapproved until a staff member confirms \\
+  TC-08 & SON applicant with a conditional entrance exam score & SON rule set flags the applicant; no selection is recorded by the system \\
+  TC-09 & SEA applicant below the entrance exam cutoff & SEA rule set flags the applicant as not meeting the program minimum; decision remains with the subcommittee \\
+  TC-10 & Applicant whose two program choices belong to different schools & Application appears in both schools' partitions \\
+  TC-11 & Subcommittee records an award before the Office of Admission release & Status is recorded; no notification reaches the applicant until the release event \\
+  TC-12 & Awardee declines the offer & Slot freed; subcommittee alerted with a proposed waitlisted candidate; no award to the candidate until the subcommittee confirms \\
+  TC-13 & Attempt by a system process to set Disapproved, Waitlisted, or Awarded & Transition rejected by the human-actor guard \\
+  TC-14 & Inter-track realignment from Working Scholars to GIA & Track changed by an evaluator; prior track retained in history and audit log \\
+  TC-15 & Subcommittee member attempts to view another school's partition & Access denied by RLS \\
+  TC-16 & Any completed test case & Every status change in the audit log carries an actor, timestamp, prior status, and new status \\
+\end{longtable}
 
-To operationalize the within-subjects comparative design described in Section 3.1, this study employs two structurally paired survey instruments administered at distinct phases of the research process. The Pre-Study Student Problem Validation Survey (Appendix B) is administered prior to system exposure to establish baseline data on the perceived burden of the existing manual scholarship application process. The Post-Prototype Perceived Effort Survey (Appendix C) is administered immediately following the task-based usability testing session to capture participants' post-exposure perceptions using an identical scale structure. Together, these instruments generate the comparative data required to address Research Questions 1, 2, and 3, as the System Usability Scale administered in the same session addresses only RQ4. The paired design deliberately uses within-subjects administration --- the same participants complete both instruments --- to eliminate inter-group variability. Because each participant's pre-study responses serve as their own individual baseline, any observed reduction in perceived effort or time burden can be attributed to the system's features rather than differences in prior scholarship experience across participants. Both instruments use scaled and categorical response formats rather than open recall of specific durations, acknowledging that the manual application process unfolds over days or weeks and is not conducive to precise time measurement. Pre-Study Student Problem Validation Survey (Appendix B) The pre-study instrument is administered to a purposive sample of current or former AdDU scholarship applicants prior to prototype development or any system exposure. It is organized into three components, each targeting a distinct dimension of the manual process and a corresponding research question. Component 1: Perceived Time-on-Process asks respondents to estimate the total duration of their end-to-end manual application experience --- from initial scholarship discovery through physical document submission --- using five ordinal ranges: less than 1 day, 1 -- 3 days, 4 -- 7 days, 1 -- 2 weeks, and more than 2 weeks. This item establishes the time-burden baseline for RQ1. It should be noted, however, that post-prototype time estimates are derived from a controlled prototype testing session and may not accurately reflect the duration of the process in actual real-world deployment, where variables such as document readiness, network conditions, and platform familiarity over sustained use may produce different results. Component 2: Perceived Effort Scale applies a five-point Likert format (1 = Very Easy, 5 = Very Difficult) to six discrete application sub-tasks. The six sub-tasks are: (1) finding out which specific scholarships the student was eligible for; (2) determining whether they specifically met all eligibility criteria --- including QPI thresholds, household income ceilings, and degree program restrictions --- for a given scholarship prior to submitting; (3) gathering, printing, and preparing the required physical documents; (4) physically submitting the completed application package to the respective offices; (5) tracking the status of the application after submission; and (6) keeping track of multiple scholarship deadlines simultaneously throughout the application period. Sub-tasks 1, 3, 4, and 5 together establish the effort baseline for RQ1. Sub-task 2 specifically establishes the eligibility confusion baseline for RQ2. Sub-task 6 establishes the deadline management difficulty baseline for RQ3. Component 3: Application Accuracy and Deadline History uses categorical and multiple-choice items to establish behavioral frequency baselines for RQ2 and RQ3. Respondents are asked whether they have ever submitted an application and later discovered they did not meet the eligibility requirements for that scholarship, and if so, how many times this occurred. They are separately asked whether they have ever missed a scholarship application deadline under the manual process, and if so, what the primary reason was. These items produce the concrete behavioral baseline data against which the post-prototype instrument's feature-effectiveness responses are compared. Post-Prototype Perceived Effort Survey (Appendix C) The post-prototype instrument is administered to the same participants immediately following the completion of the task-based usability testing session and after the SUS questionnaire. Its structural mirroring of Appendix B is deliberate and essential: because both instruments use identical Likert anchors, ordinal ranges, and sub-task categories, their corresponding items can be directly compared without transformation. Component 1 presents the same five ordinal time-estimation ranges as the pre-study, asking participants to estimate how much total time the digital scholarship application process through ScholarPath AdDU would require. This mirrors the pre-study Component 1 for RQ1 comparison. Component 2 presents the same six perceived effort sub-tasks as the pre-study, reworded to reflect ScholarPath AdDU's specific features: scholarship discovery through the centralized repository; eligibility determination through the Smart Eligibility Checker; document management through the Document Vault; digital application submission; application status tracking through the student dashboard; and deadline awareness through the automated notification subsystem. The same five-point Likert anchors are used, allowing mean scores per sub-task to be compared directly against pre-study means. Component 3: System Feature Effectiveness moves beyond effort estimation to assess whether participants believe the system's specific features address the problems identified in the pre-study's Component 3. Participants indicate whether they believe the Smart Eligibility Checker would prevent them from applying to scholarships for which they do not qualify --- directly addressing the mismatch baseline from RQ2 --- and rate the extent to which the automated notification system would help them remain aware of upcoming deadlines --- directly addressing the missed-deadline baseline from RQ3. Component 4: Overall Comparative Perception asks participants to characterize the total effort required by ScholarPath AdDU relative to the traditional manual process, using a five-point scale ranging from Much Less Effort to Much More Effort. This item synthesizes the findings of RQ1 through RQ3 into a single directional indicator and provides a holistic perception anchor for the study's comparative conclusions. An optional open-ended item closes the instrument, inviting participants to identify which specific system feature most reduced the difficulty of the scholarship application process for them.
+\subsection{Pre-Study, Post-Prototype, and Committee Survey Instruments}
+\label{sec:instruments}
+
+To operationalize the within-subjects comparative design described in Section~\ref{sec:research-design}, this study employs two structurally paired applicant instruments administered at distinct phases of the research process, together with a single-administration staff instrument. The Pre-Study Student Problem Validation Survey (Appendix~\ref{app:pre-survey}) is administered prior to system exposure to establish baseline data on the perceived burden of the existing paper-based process. The Post-Prototype Perceived Effort Survey (Appendix~\ref{app:post-survey}) is administered immediately following the task-based usability testing session using an identical scale structure. Together, these instruments generate the comparative data required to address Research Questions 1 and 3. Because each participant's pre-study responses serve as their own baseline, any observed reduction in perceived effort can be attributed to the system's features rather than to differences in prior scholarship experience. Both instruments use scaled and categorical response formats rather than open recall of specific durations, acknowledging that the manual application process unfolds over days or weeks and is not conducive to precise time measurement.
+
+Pre-Study Student Problem Validation Survey (Appendix~\ref{app:pre-survey}). The pre-study instrument is administered to a purposive sample of current or recent AdDU scholarship applicants prior to any system exposure. It is organized into three components. Component 1: Perceived Time-on-Process asks respondents to estimate the total duration of their end-to-end manual application experience, from reading the scholarship announcement through physically submitting the application form and supporting documents, using five ordinal ranges: less than 1 day, 1--3 days, 4--7 days, 1--2 weeks, and more than 2 weeks. This item establishes the time-burden baseline for RQ1. Post-prototype time estimates are derived from a controlled testing session and may not reflect the duration of the process in real-world deployment, where document readiness, network conditions, and platform familiarity may produce different results. Component 2: Perceived Effort Scale applies a five-point Likert format (1 = Very Easy, 5 = Very Difficult) to six application sub-tasks: (1) understanding which scholarship track to apply for and what it requires; (2) determining whether they met the baseline requirements, such as the high school average, entrance exam result, rank certificate, and income documents, before submitting; (3) gathering, printing, and preparing the required physical documents; (4) physically submitting the completed application package; (5) tracking the status of the application after submission; and (6) keeping track of submission deadlines and requests for missing documents. Sub-tasks 1 through 5 establish the effort baseline for RQ1, and sub-task 6 establishes the deadline and correction baseline for RQ3. Component 3: Document and Deadline History uses categorical items to establish behavioral baselines for RQ3. Respondents are asked whether an application of theirs was ever delayed or rejected because of a missing or illegible document, and how often; and whether they ever missed a scholarship application deadline, and for what primary reason.
+
+Post-Prototype Perceived Effort Survey (Appendix~\ref{app:post-survey}). The post-prototype instrument is administered to the same participants after the SUS questionnaire. Its structural mirroring of the pre-study instrument is deliberate: because both instruments use identical Likert anchors, ordinal ranges, and sub-task categories, their corresponding items can be compared directly. Component 1 presents the same five ordinal time-estimation ranges. Component 2 presents the same six sub-tasks, reworded to reflect ScholarPath AdDU's features: track and program selection at registration; understanding the Phase~1 Pre-qualification result; uploading documents through the Document Vault; submitting the application digitally; tracking status through the applicant dashboard; and staying aware of deadlines and correction requests through the notification subsystem. Component 3: System Feature Effectiveness asks whether the Conditional Revert notice would help participants correct a missing or illegible document before their application lapses, and how far the automated notifications would help them remain aware of upcoming deadlines. Component 4: Overall Comparative Perception asks participants to characterize the total effort required by ScholarPath AdDU relative to the paper-based process on a five-point scale. An optional open-ended item closes the instrument.
+
+Committee Portal Usefulness Survey (Appendix~\ref{app:committee-survey}). University Scholarship Office staff and School Scholarship Subcommittee members who complete Tasks 3 and 4 rate, on a five-point agreement scale, whether the Committee Portal presents the information they need to decide, whether the school partition and filters reduce manual collation, whether the audit log makes decisions traceable, and whether they retain full control over every status decision. These items address RQ2(b).
 
 \section{Ethical Considerations}
+\label{sec:ethics}
 
 Because the usability testing of ScholarPath AdDU involves human participants and the simulated input of sensitive socioeconomic data, the evaluation phase is strictly governed by established research ethics and the Philippine Data Privacy Act of 2012 (RA 10173). The following ethical protocols will be implemented throughout the testing phase:
 
 \begin{itemize}
-  \item Informed Consent and Voluntary Participation: Prior to any system interaction, all participants will be provided with an informed consent form detailing the purpose of the study, the specific tasks required, and the estimated time commitment. Participation is strictly voluntary, and end-users maintain the right to withdraw from the testing session at any point without penalty or need for justification.
-  \item Data Anonymization and Privacy: During the task-based execution (specifically Task 1: Profile Registration), participants will be explicitly instructed to use provided mock data or pseudonymized profiles rather than their actual household income or academic records. This ensures that no genuine sensitive information is exposed or recorded during the evaluation of the system's matching algorithm.
-  \item Confidentiality and Secure Data Disposal: All observational metrics; pre-study and post-prototype survey responses (Appendices B and C), and SUS questionnaire responses will be kept strictly confidential. The qualitative and quantitative data will be aggregated so that no single metric or quote can be traced back to an individual participant. Upon the successful defense and final submission of the capstone project, all test accounts, mock databases, and physical consent forms utilized during the evaluation phase will be permanently and securely deleted to prevent any unauthorized data retention.
+  \item Informed Consent and Voluntary Participation: Prior to any system interaction, all participants will be provided with an informed consent form detailing the purpose of the study, the specific tasks required, and the estimated time commitment. Because scholarship applicants may be incoming first-year students under 18 years of age, participants who are minors will additionally require the written consent of a parent or guardian together with their own assent. Participation is strictly voluntary, and participants maintain the right to withdraw from the testing session at any point without penalty or need for justification. % TODO(L-4): confirm minor-consent requirements with the ethics adviser.
+  \item Data Anonymization and Privacy: During task execution, participants will be explicitly instructed to use provided mock data or pseudonymized profiles rather than their actual household income, grades, or documents. This ensures that no genuine sensitive information is exposed or recorded during the evaluation.
+  \item Confidentiality and Secure Data Disposal: All observational metrics, survey responses (Appendices~\ref{app:pre-survey} to~\ref{app:committee-survey}), and SUS questionnaire responses will be kept strictly confidential. Data will be aggregated so that no single metric or quote can be traced back to an individual participant. Upon the successful defense and final submission of the capstone project, all test accounts, mock databases, and physical consent forms utilized during the evaluation phase will be permanently and securely deleted.
 \end{itemize}
