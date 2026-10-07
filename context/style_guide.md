@@ -4,8 +4,8 @@
 - Academic, precise, declarative. Prefer "The engine evaluates…" over "We think the engine might…".
 - Present tense for system behavior ("the engine applies the exclusion flag"); future tense is acceptable **only** in Chapter 3 for procedures not yet executed at drafting time ("participants will be provided…").
 - Use em dashes (---) for appositive elaboration, as in the source draft; do not overuse (max ~1 per paragraph).
-- Spell out on first use with acronym: "Office of Student Affairs (OSA)", "Quality Point Index (QPI)", "System Usability Scale (SUS)". Thereafter use the acronym.
-- Brand names verbatim: Supabase, PostgreSQL, Capacitor, Twilio, SendGrid, Vite, BIR, DOST, CHED.
+- Spell out on first use with acronym: "Office of Admission and Aid", "Quality Point Index (QPI)", "System Usability Scale (SUS)". Thereafter use the acronym.
+- Brand names verbatim: Supabase, PostgreSQL, Capacitor, Iprogsms, Resend, Vite, BIR, DOST, CHED.
 
 ## Math & Technical Notation
 - Vectors/sets are not heavily used; when needed: bold lowercase for vectors (\(\mathbf{x}\)), calligraphic for sets.
@@ -33,6 +33,6 @@
 - Figures: PNGs in `figures/`, referenced via `\graphicspath{{figures/}}`; prefer `[htbp]`; raster images extracted from the legacy PDF are placeholders — regenerate as vector/PDF when possible.
 
 ## Terminology Consistency (from source; keep these exact)
-- "funding pipelines" (54 total), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "fit-margin relevance score", "Pre-Study Student Problem Validation Survey", "Post-Prototype Perceived Effort Survey"
+- "internal scholarship tracks" (three: Jubilee, Grant-in-Aid, Working Scholars), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "Conditional Revert", "Committee Portal", "fit-margin relevance score", "Pre-Study Student Problem Validation Survey", "Post-Prototype Perceived Effort Survey"
 - Categories: Internally Funded Endowments · Corporate & External Foundations · State-Sponsored Grants · Specialized Service Pipelines
-- Numbers: "54 funding pipelines" and "over 50 programs" both appear; prefer **54** when citing the inventory count.
+- Numbers: the revised scope is three internal scholarship tracks (Jubilee, Grant-in-Aid, Working Scholars); cite the 1,326 paper applications per cycle figure when referencing the volume of the manual process.

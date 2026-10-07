@@ -49,8 +49,8 @@ latexmk -pdf -interaction=nonstopmode main.tex
 
 - Voice: academic, precise, declarative ("The engine evaluates…", not "We think…").
 - Present tense for system behavior; future tense **only** for not-yet-executed procedures in Chapter 3 ("participants will be provided…").
-- Spell out + abbreviate on first use ("Office of Student Affairs (OSA)"). Brand names verbatim: Supabase, PostgreSQL, Capacitor, Twilio, SendGrid, Vite, BIR, DOST, CHED.
-- Terminology must stay exact: "funding pipelines", "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "fit-margin relevance score". Prefer **54** as the pipeline count.
+- Spell out + abbreviate on first use ("Office of Admission and Aid"). Brand names verbatim: Supabase, PostgreSQL, Capacitor, Iprogsms, Resend, Vite, BIR, DOST, CHED.
+- Terminology must stay exact: "internal scholarship tracks" (three: Jubilee, Grant-in-Aid, Working Scholars), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "Conditional Revert", "Committee Portal", "fit-margin relevance score".
 - Use em dashes sparingly (max ~1 per paragraph).
 
 ## Workflow Checklist

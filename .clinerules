@@ -24,8 +24,8 @@ Project: **ScholarPath AdDU** — LaTeX capstone manuscript (see `README.md` and
 
 ## Tone & terminology (in newly drafted prose)
 - Academic, declarative, present tense for system behavior; future tense only for not-yet-executed procedures in Chapter 3.
-- Spell out + abbreviate on first use ("Office of Student Affairs (OSA)"). Brand names verbatim (Supabase, PostgreSQL, Capacitor, Twilio, SendGrid, Vite, BIR, DOST, CHED).
-- Exact terminology: "funding pipelines" (prefer **54**), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "fit-margin relevance score". Em dashes max ~1 per paragraph.
+- Spell out + abbreviate on first use ("Office of Admission and Aid"). Brand names verbatim (Supabase, PostgreSQL, Capacitor, Iprogsms, Resend, Vite, BIR, DOST, CHED).
+- Exact terminology: "internal scholarship tracks" (three: Jubilee, Grant-in-Aid, Working Scholars), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "Conditional Revert", "Committee Portal", "fit-margin relevance score". Em dashes max ~1 per paragraph.
 
 ## Finish
 - After completing any tracked task, update `context/outline.md` and `context/drafting_queue.md` accordingly, and confirm the build is clean.

@@ -1,6 +1,6 @@
 # ScholarPath AdDU — Capstone Manuscript
 
-**ScholarPath AdDU: A Web-Based Centralized Scholarship Discovery and Application Tracking System for Ateneo de Davao University Students**
+**ScholarPath AdDU: A Web-Based Scholarship Application Processing and Committee Decision-Support System for Ateneo de Davao University's Internal Scholarship Tracks**
 
 This repository contains the LaTeX source for the capstone manuscript of **Capstone Project and Research 1** (2nd Semester, SY 2025–2026), targeting submission in **April 2026**.
 
@@ -30,11 +30,11 @@ This repository contains the LaTeX source for the capstone manuscript of **Capst
 
 ## Project Overview
 
-AdDU manages a financial aid ecosystem of **54 funding pipelines** (internally funded endowments, corporate & external foundations, state-sponsored grants, and specialized service pipelines) through largely decentralized, paper-based processes. **ScholarPath AdDU** addresses this by providing a centralized, web-based platform unifying **discovery (faceted search)**, **eligibility automation (rule-based "Smart Eligibility Checker" with the Exclusion Flag Hierarchy conflict-resolution mechanism)**, **document management (one-time-upload Document Vault)**, and **proactive, event-driven notification (SMS/email)**.
+AdDU administers three **internal scholarship tracks** (Jubilee, Grant-in-Aid, Working Scholars) — handling roughly 1,326 paper applications per cycle — through largely decentralized, paper-based processes. **ScholarPath AdDU** addresses this by providing a centralized, web-based platform unifying **two-stage digital application processing**, **first-pass eligibility screening (rule-based "Smart Eligibility Checker" with the Exclusion Flag Hierarchy conflict-resolution mechanism)**, **document management (two-stage Document Vault with Conditional Revert)**, a **Data-Feeding Committee Portal**, and **proactive, event-driven notification (Iprogsms SMS / Resend email)**.
 
 The manuscript is organized around four research questions and is grounded in a within-subjects comparative usability evaluation against the manual baseline. See [`context/project_overview.md`](context/project_overview.md) for the full project brief.
 
-**Manuscript status:** Chapters 1–4 (Introduction, Related Works, Methodology, Theoretical Background) and Appendices A–C exist as a compiling draft. Results/Discussion (Ch. 5) and Conclusions (Ch. 6) are not yet written. See [`context/outline.md`](context/outline.md) and [`context/drafting_queue.md`](context/drafting_queue.md).
+**Manuscript status:** Chapters 1–4 (Introduction, Related Works, Methodology, Theoretical Background) and Appendices A–C exist as a compiling draft, now migrated to the **revised (Capstone 2) manuscript** (committee decision-support framing, three internal scholarship tracks, Iprogsms/Resend notification APIs). Results/Discussion (Ch. 5) and Conclusions (Ch. 6) are not yet written. See [`context/outline.md`](context/outline.md) and [`context/drafting_queue.md`](context/drafting_queue.md).
 
 ---
 
@@ -50,7 +50,7 @@ CAPSTONE-manuscript/
 │   ├── 02_related_works.tex
 │   ├── 03_methodology.tex
 │   ├── 04_theoretical_background.tex
-│   ├── 05_appendix_a.tex    # Appendix A: 54-row funding-pipelines longtable
+│   ├── 05_appendix_a.tex    # Appendix A: internal-scholarship-tracks longtable
 │   ├── 06_appendix_b.tex    # Appendix B: pre-study problem validation survey
 │   └── 07_appendix_c.tex    # Appendix C: post-prototype perceived effort survey
 ├── figures/                 # Raster figures + AdDU logo (referenced via graphicspath)

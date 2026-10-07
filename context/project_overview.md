@@ -1,7 +1,7 @@
 # Project Overview — ScholarPath AdDU
 
 ## Working Title
-**ScholarPath AdDU: A Web-Based Centralized Scholarship Discovery and Application Tracking System for Ateneo de Davao University Students**
+**ScholarPath AdDU: A Web-Based Scholarship Application Processing and Committee Decision-Support System for Ateneo de Davao University's Internal Scholarship Tracks**
 
 ## Team & Venue
 - Authors: Raphael Miguel Operario, Brendon Justine Belen, Eriel John Espinosa
@@ -10,21 +10,22 @@
 - Requirement: Capstone Project and Research 1, 2nd Semester, SY 2025–2026 (target: April 2026)
 
 ## Core Thesis
-AdDU's 54-pipeline financial aid ecosystem is administered through decentralized, largely paper-based processes (Form 230-SCH, sealed letters, static announcements), causing discovery friction, eligibility mismatch, and missed deadlines. A centralized, web-based platform — unifying **discovery (faceted search), eligibility automation (rule-based matching with conflict resolution), document management (one-time-upload vault), and proactive notification (event-driven SMS/email)** — measurably reduces the time and effort students spend securing financial aid, while remaining compliant with RA 10173 (Philippine Data Privacy Act of 2012).
+AdDU administers three **internal scholarship tracks** (Jubilee, Grant-in-Aid, Working Scholars) — handling roughly 1,326 paper applications per cycle — through decentralized, largely paper-based processes (Form 230-SCH, sealed letters, static announcements), causing discovery friction, eligibility mismatch, and missed deadlines. A centralized, web-based platform — unifying **two-stage digital application processing, first-pass eligibility screening (the "Smart Eligibility Checker" with the Exclusion Flag Hierarchy), document management (the two-stage Document Vault with Conditional Revert), a Data-Feeding Committee Portal, and proactive notification (event-driven SMS/email)** — reduces the time and effort applicants spend, while remaining compliant with RA 10173 (Philippine Data Privacy Act of 2012).
 
 ## Technical Domain
 - Web + hybrid mobile application (Vite JS bundle wrapped via Capacitor)
 - Supabase/PostgreSQL backend: normalized relational schema, compound B-Tree + range indexing, row-level role-governed access
 - Rule-based expert system ("Smart Eligibility Checker") with an Exclusion Flag Hierarchy conflict-resolution mechanism
 - Dynamic faceted search over four metadata facets (funding origin taxonomy)
-- Event-driven notification subsystem via serverless Edge Functions (Twilio SMS, SendGrid email)
+- Event-driven notification subsystem via serverless Edge Functions (Iprogsms SMS, Resend email)
+- Two-stage Application Lifecycle with a 5-calendar-day Conditional Revert window and a Data-Feeding Committee Portal
 - NIST RBAC for data privacy enforcement
 
 ## Research Questions (from §1.2 Problem Statement)
-1. **RQ1 (Time/effort):** What is the perceived reduction in time AdDU students spend discovering and applying for financial aid using ScholarPath AdDU vs. the current manual process?
-2. **RQ2 (Matching accuracy):** How does the Smart Eligibility Checker perform in (a) functional correctness — does the Exclusion Flag Hierarchy produce expected outputs across edge-case profiles — and (b) accuracy of eligibility matching?
-3. **RQ3 (Deadline management):** How does the automated notification subsystem affect students' ability to track multiple simultaneous deadlines?
-4. **RQ4 (Usability):** What is the perceived usability of the platform (SUS + ISO/IEC 25010 functional suitability, performance efficiency)?
+1. **RQ1 (Time/effort):** What is the perceived reduction in the time and effort AdDU scholarship applicants spend on the application process when using the two-stage digital submission of ScholarPath AdDU compared to the current paper-based process?
+2. **RQ2 (Application Lifecycle + committee portal):** How does the Application Lifecycle workflow perform in (a) functional correctness — do status transitions (including Conditional Revert and Lapsed) match a structured Lifecycle Test Case Matrix with no status change lacking a recorded human actor — and (b) perceived usefulness of the Data-Feeding Committee Portal to University Scholarship Office staff and School Scholarship Subcommittee members?
+3. **RQ3 (Deadline management):** To what extent does the automated notification subsystem reduce missed submission deadlines and uncorrected incomplete files among applicants?
+4. **RQ4 (Usability):** What is the overall system usability and performance efficiency of ScholarPath AdDU (SUS + ISO/IEC 25010 functional suitability)?
 
 ## Methodology Summary
 - **Design:** Within-subjects comparative usability evaluation; pre-study baseline (Appendix B) vs. post-prototype (Appendix C) paired instruments on the same cohort.
@@ -41,4 +42,4 @@ DeLone & McLean IS Success Model (umbrella) · Relational theory/normalization (
 - Tertiary: Philippine higher-education information-systems researchers (RRL conversation: Al-Ayyubi & Maulana; Daluyon & Bilog; Amer; Orgianus et al.)
 
 ## Manuscript Status Snapshot
-Chapters 1–4 exist as a revised draft (source PDF). **Results/Discussion and Conclusion chapters do not yet exist** — the evaluation is scheduled/prospective in the text ("will be administered"), consistent with a Research 1 manuscript mid-stream. See `outline.md` and `drafting_queue.md`.
+Chapters 1–4 and Appendices A–C exist as a compiling LaTeX draft, now migrated to the **revised (Capstone 2) manuscript**: committee decision-support framing, the three internal scholarship tracks (Jubilee, Grant-in-Aid, Working Scholars), Iprogsms/Resend notification APIs, the RBAC matrix (Table 3), and the Smart Eligibility Checker test-case matrix. **Results/Discussion and Conclusion chapters do not yet exist** — the evaluation is scheduled/prospective in the text ("will be administered"), consistent with a Research 1 manuscript mid-stream. See `outline.md` and `drafting_queue.md`.
