@@ -44,7 +44,7 @@ Project: **ScholarPath AdDU** — a LaTeX capstone manuscript, not application c
 - Present tense for system behavior; future tense **only** for not-yet-executed procedures in Chapter 3 ("participants will be provided…").
 - Spell out + abbreviate on first use ("Office of Student Affairs (OSA)"). Brand names verbatim: Supabase, PostgreSQL, Capacitor, Twilio, SendGrid, Vite, BIR, DOST, CHED.
 - Exact terminology: "funding pipelines" (prefer **54** as the count), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "fit-margin relevance score".
-- Em dashes sparingly (max ~1 per paragraph).
+- Avoid em dashes; use commas, colons, or parentheses instead.
 
 ## Claude Code Notes
 
