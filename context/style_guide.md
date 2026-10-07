@@ -3,7 +3,7 @@
 ## Voice & Tone
 - Academic, precise, declarative. Prefer "The engine evaluates…" over "We think the engine might…".
 - Present tense for system behavior ("the engine applies the exclusion flag"); future tense is acceptable **only** in Chapter 3 for procedures not yet executed at drafting time ("participants will be provided…").
-- Use em dashes (---) for appositive elaboration, as in the source draft; do not overuse (max ~1 per paragraph).
+- Avoid em dashes; use commas, colons, or parentheses for appositive elaboration. (The manuscript was swept clean of em dashes; do not reintroduce them.)
 - Spell out on first use with acronym: "Office of Admission and Aid", "Quality Point Index (QPI)", "System Usability Scale (SUS)". Thereafter use the acronym.
 - Brand names verbatim: Supabase, PostgreSQL, Capacitor, Iprogsms, Resend, Vite, BIR, DOST, CHED.
 

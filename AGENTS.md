@@ -51,7 +51,7 @@ latexmk -pdf -interaction=nonstopmode main.tex
 - Present tense for system behavior; future tense **only** for not-yet-executed procedures in Chapter 3 ("participants will be provided…").
 - Spell out + abbreviate on first use ("Office of Admission and Aid"). Brand names verbatim: Supabase, PostgreSQL, Capacitor, Iprogsms, Resend, Vite, BIR, DOST, CHED.
 - Terminology must stay exact: "internal scholarship tracks" (three: Jubilee, Grant-in-Aid, Working Scholars), "Smart Eligibility Checker", "Exclusion Flag Hierarchy", "Document Vault", "Dynamic Faceted Search", "Conditional Revert", "Committee Portal", "fit-margin relevance score".
-- Use em dashes sparingly (max ~1 per paragraph).
+- Avoid em dashes; use commas, colons, or parentheses instead.
 
 ## Workflow Checklist
 

@@ -4,6 +4,10 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 
 **Revision log (Capstone 2 migration).** Chapters 1–4 and Appendices A–C were migrated to the revised manuscript: committee decision-support framing, three internal scholarship tracks (Jubilee, Grant-in-Aid, Working Scholars), Iprogsms/Resend notification APIs, new Research Questions and objectives (§1.2–1.3), a rebuilt Table 1 (selection tracks), the reconstructed Table 2 (RRL keystone), the RBAC matrix (Table 3), the Smart Eligibility Checker test-case matrix (§3.4.2), and reconstructed `booktabs` tables 4–8. Build verified clean (`latexmk -pdf`, 58 pp.). Figures 1–4 were subsequently regenerated from the revised source diagrams; the legacy Chapter 3 eligibility-logic raster was retired in favor of the revised end-to-end application process flow, which now occupies the Chapter 3 flow-figure slot (Figure 3.2). Prose cross-references to floats were also rewired from the legacy hardcoded numbers to `\ref{}`, since `report` numbers figures and tables per chapter (Figures 2.1, 3.1–3.3; Tables 1.1, 2.1, 3.1, 4.1–4.5).
 
+**Revision log (Unified Admin Dashboard pass).** The manuscript was brought into line with the committee decision that all evaluator functions run in a single **Unified Admin Dashboard** (roles scoped by PostgreSQL Row Level Security), matching Figures 3.2–3.3 and Table 3.1, which were already unified. Legacy role names (OSA staff/administrators, Admissions administrators, Department Chairs/Coordinators) were replaced throughout Chapters 1–4 with the six Table-3.1 roles; the §1.2 RQ2 "Data-Feeding Committee Portal" was renamed to the Unified Admin Dashboard for single-interface naming; a new rationale paragraph was inserted after the RBAC matrix in §3.3.3; a Synthesis-of-Gaps row (Kayanja \cite{ref46}; Orgianus \cite{ref36}) was added to Table~2.1; and the stale "pipelines" terminology was swept to "internal scholarship tracks." Migration artifacts were also repaired: the duplicated §2.6 block was removed from the §2.5 paragraph, the stray "3.3.4" literal in §3.3.3 was deleted, and the §3.3.2 "$O(n)$" fragment was restored. Build verified clean (`latexmk -pdf -g`, 56 pp.).
+**Revision log (Em-dash cleanup).** All 159 em dashes (`---`) were removed from the Chapters 1–4 prose and Appendices B–C and recast as commas, colons, parentheses, or split sentences, preserving every `\cite{}`, `\ref{}`, and quotation. The compiled PDF now contains zero em dashes; numeric ranges (`--`) and the Appendix A `longtable` were left untouched. The "no em dash" rule was also recorded in `context/style_guide.md`, `AGENTS.md`, `CLAUDE.md`, and `.clinerules`. Build verified clean (`latexmk -pdf`).
+
+
 ## Front Matter
 - [x] Title page (rebuilt in `main.tex` titlepage; retitled to the revised manuscript) `[Complete]`
 - [ ] Abstract `[Missing]` — write last, after results
@@ -14,7 +18,7 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 - 1.2 Problem Statement `[Complete]` — three problems + the new RQ1–RQ4 as `enumerate` (duplicated legacy RQ block removed)
 - 1.3 Objectives of the Study `[Complete]`
 - 1.4 Significance of the Study `[Complete]`
-- 1.5 Scope and Limitations `[Complete]` — scope bullets + 8 limitation bullets migrated as `itemize`
+- 1.5 Scope and Limitations `[Complete]` — scope bullets + 8 limitation bullets migrated as `itemize`; the "User Base Limitation" bullet was corrected in the Unified Admin Dashboard pass to include incoming Grade 12 applicants (it previously named enrolled undergraduates only)
 
 ## Chapter 2 — Review of Related Works (`chapters/02_related_works.tex`) `[Complete]`
 - 2.1 Digital Transformation in Higher Education Administration `[Complete]`
@@ -23,7 +27,7 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 - 2.4 Search and Filtering Mechanisms for Financial Aid Discovery `[Complete]`
   - 2.4.1 Policy Desynchronization in Manual Systems `[Complete]`
 - 2.5 Rule-Based Matching and Faceted Search in Deployed Systems `[Complete]`
-- 2.6 Accessibility and Remote Access in Web-Based Systems `[Complete]` — NEW (RWA/PWA/Capacitor architecture rationale); subsequent sections renumbered 2.7–2.10
+- 2.6 Accessibility and Remote Access in Web-Based Systems `[Complete]` — NEW (RWA/PWA/Capacitor architecture rationale); subsequent sections renumbered 2.7–2.10. *(A duplicate copy that had been pasted onto the end of the §2.5 paragraph was removed in the Unified Admin Dashboard pass.)*
 - 2.7 Usability and User Experience in Educational Platforms `[Complete]`
 - 2.8 Policy, Data Privacy, and Access Control in Financial Aid Information Systems `[Complete]`
 - 2.9 Theoretical Framework (DeLone & McLean; Figure 2.1) `[Complete]` — figure regenerated from the revised IS Success Model diagram
@@ -35,7 +39,7 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 - 3.3 System Architecture and Algorithmic Logic `[Complete]`
   - 3.3.1 The "Smart Eligibility Checker" (Automated Matching Engine) `[Complete]` — pseudocode restored as Listing 3.1; Figure 3.2 (end-to-end application process flow) follows the listing
   - 3.3.2 Dynamic Faceted Search and Backend Indexing Strategy `[Complete]`
-  - 3.3.3 System Architecture and Cloud Infrastructure `[Complete]` — Figure 3.3 (three-layer architecture) regenerated from the revised diagram; the RBAC matrix (Table 3.1) and the Data Privacy discussion follow inside this section (migrated prose retains a stray "3.3.4" heading label — see drafting-queue item 4)
+  - 3.3.3 System Architecture and Cloud Infrastructure `[Complete]` — Figure 3.3 (three-layer architecture) regenerated from the revised diagram; the RBAC matrix (Table 3.1, `tab:rbac`), its unification-rationale paragraph, and the Data Privacy discussion follow inside this section (the stray "3.3.4" heading literal was removed in the Unified Admin Dashboard pass)
   - 3.3.4 Automated Notification Subsystem `[Complete]`
 - 3.4 Testing & Evaluation Procedures (ISO/IEC 25010 Task-Based Usability Protocol) `[Complete]`
   - 3.4.1 Step-by-Step Testing Procedure (Tasks 1–4) `[Complete]`
