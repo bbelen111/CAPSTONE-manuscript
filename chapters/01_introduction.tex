@@ -42,7 +42,13 @@ Consequently, this study seeks to answer the following specific research questio
 
 \begin{enumerate}
   \item What is the perceived reduction in the time and effort AdDU scholarship applicants spend on the application process when using the two-stage digital submission of ScholarPath AdDU compared to the current paper-based process?
-  \item How does the ScholarPath AdDU Application Lifecycle workflow perform in terms of (a) functional correctness, specifically whether status transitions, including Conditional Revert and Lapsed, match the expected outputs of a structured Lifecycle Test Case Matrix with no status change lacking a recorded human actor, and (b) perceived usefulness of the Unified Admin Dashboard to University Scholarship Office staff and School Scholarship Subcommittee members?
+  \item How does the ScholarPath AdDU Application Lifecycle workflow perform
+in terms of (a) functional correctness, specifically whether status
+transitions, including Conditional Revert and Lapsed, match the expected
+outputs of a structured Lifecycle Test Case Matrix with no status change
+lacking a recorded human actor, and (b) perceived usefulness of the
+Unified Admin Dashboard as assessed by an expert administrative evaluator
+from the Office of Admission and Aid?
   \item To what extent does the automated notification subsystem reduce missed submission deadlines and uncorrected incomplete files among applicants?
   \item What is the overall system usability and performance efficiency of ScholarPath AdDU as evaluated by users based on the ISO/IEC 25010 functional suitability standards?
 \end{enumerate}
@@ -57,7 +63,16 @@ Consequently, this study seeks to answer the following specific research questio
   \item To develop a first-pass eligibility screening engine, the Smart Eligibility Checker, that evaluates an applicant's high school average, entrance exam result, household income, and chosen degree program against the requirements of the selected internal scholarship track, applying a priority-based Exclusion Flag Hierarchy to resolve policy contradictions and flag each application for admin review before it proceeds.
   \item To design a centralized digital repository that integrates AdDU's three internal scholarship tracks (Jubilee, Grant-in-Aid, and Working Scholars) and their applicant records within a unified, searchable platform supported by compound-indexed dynamic faceted search.
   \item To implement a proactive notification and tracking system that alerts students to application statuses and strictly enforced deadlines through automated, event-driven SMS and email delivery.
-  \item To administer a Pre-Study Student Problem Validation Survey among current or former AdDU scholarship applicants to establish baseline data on the perceived time and effort burden of the existing manual process, and to administer a Post-Prototype Perceived Effort Survey to the same cohort following prototype testing, enabling a direct comparative analysis of perceived effort reduction across Research Questions 1 through 3.
+  \item To administer paired pre-study and post-prototype surveys to two
+groups: (a) current or former AdDU scholarship applicants, using the
+Pre-Study Student Problem Validation Survey (Appendix~B) and the
+Post-Prototype Perceived Effort Survey (Appendix~C); and (b) the expert
+administrative evaluator from the Office of Admission and Aid, using the
+Pre-Study Administrative Process Validation Survey (Appendix~D) and the
+Post-Prototype Administrative Evaluation Survey (Appendix~E). This
+enables a comparison of perceived effort and processing burden, from
+both the applicant and the office perspective, before and after system
+exposure across Research Questions 1 through 3.
   \item To evaluate the ScholarPath AdDU functional prototype using a task-based usability testing protocol aligned with ISO/IEC 25010 standards, measuring functional suitability, performance efficiency, and system usability via the System Usability Scale (SUS).
 \end{enumerate}
 
@@ -86,7 +101,25 @@ The system scope includes:
     \item A Unified Admin Dashboard through which Scholarship Staff broadcast announcements, monitor pending applications, and track real-time analytics, and through which School Subcommittees filter and assess applicants within their school, including household income for Grant-in-Aid (GIA) selections. All evaluator roles work in this single interface; each role's view is scoped by Row Level Security (Table~\ref{tab:rbac}).
   \end{itemize}
   \item \textbf{Development Approach:} The prototype implements a hybrid mobile and web architecture to ensure cross-platform compatibility. The system utilizes standard web frameworks and cloud-based databases to manage real-time synchronization, cloud storage, and secure user authentication.
-  \item \textbf{Evaluation Scope:} Usability testing based on ISO/IEC 25010 standards will involve a purposive sample of approximately 10 participants, comprising AdDU scholarship applicants, University Scholarship Office staff, and selected School Scholarship Subcommittee members. The evaluation will use a mixed-method approach, combining task-based observational testing (measuring completion rates and time-on-task) with two sequential post-session instruments: the System Usability Scale (SUS) to assess perceived interface usability, and the Post-Prototype Perceived Effort Survey (Appendix C) to generate comparative data against the pre-study baseline from Appendix B. Results will be quantified using descriptive statistics to measure the perceived reduction in processing times.
+  \item \textbf{Evaluation Scope:} Usability testing based on ISO/IEC 25010
+standards will involve eleven (11) purposively selected participants in
+two groups: (a) ten (10) student participants who have previously applied
+for an AdDU scholarship through the manual, paper-based process and who
+evaluate the applicant portal; and (b) one (1) expert administrative
+evaluator, a head of the Office of Admission and Aid, who evaluates the
+Unified Admin Dashboard. Student participants complete task-based
+observational testing (measuring completion rates and time-on-task), the
+System Usability Scale (SUS), and the Post-Prototype Perceived Effort
+Survey (Appendix~C), whose results are compared against their own
+pre-study baseline (Appendix~B). The expert evaluator completes the
+Pre-Study Administrative Process Validation Survey (Appendix~D) before
+any system exposure, then the administrative task, the SUS, the
+Post-Prototype Administrative Evaluation Survey (Appendix~E), and a
+semi-structured interview; Appendices~B and~C, which concern the
+applicant experience, are not administered to them. Student results are
+summarized using
+descriptive statistics, while the expert evaluation is reported
+separately as an individual case.
 \end{itemize}
 
 \textbf{Limitations}
@@ -102,6 +135,14 @@ This study acknowledges the following realistic constraints that define its boun
   \item \textbf{Credential Verification Boundary:} High school averages and uploaded documents are verified 100\% inside the University Scholarship Office against official submitted report cards, with no third-party or external database verifier.
   \item \textbf{User Base Limitation:} System access is restricted to AdDU scholarship applicants and authorized university personnel. This includes incoming Grade 12 applicants as well as officially enrolled college students. Other basic education units (Grade School, Junior High, Senior High) outside the scholarship applicant pool, Graduate School students, and the general public are excluded from this platform.
   \item \textbf{Testing Scope Limitation:} Usability evaluation involves a purposive sample of participants rather than a university-wide deployment. Findings will inform prototype refinement for the capstone requirements but do not constitute definitive statistical claims about the system's efficacy across the entire AdDU population.
+  \item \textbf{Single Expert Administrative Evaluator:} The Unified Admin
+Dashboard is evaluated by one expert evaluator, a head of the Office of
+Admission and Aid, selected because of their direct oversight of the
+scholarship application process. This provides an informed assessment of
+the dashboard's fit with actual office workflow, but it represents a
+single administrative perspective. Findings on the dashboard are
+therefore reported qualitatively and are not generalized to all
+administrative users.
   \item \textbf{Prototype-Based Time Estimation Constraint:} The participant time estimates collected through the Post-Prototype Perceived Effort Survey (Appendix C) are based on a single, controlled prototype testing session rather than sustained real-world use of the deployed system. Consequently, these estimates may not fully reflect actual time-on-process in practice, as factors such as varying network conditions, individual document readiness, and accumulated platform familiarity over repeated use could produce meaningfully different results from those observed during the evaluation session.
 \end{itemize}
 

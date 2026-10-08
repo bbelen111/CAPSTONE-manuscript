@@ -5,7 +5,25 @@ This chapter details the systematic procedures, processes, and tools utilized in
 
 \section{Research Design}
 
-The research design incorporates a comparative usability evaluation to validate the system's impact on processing efficiency. During the initial requirements gathering phase, the researchers will administer a pre-study time-on-task survey to a purposive sample of existing scholars. This survey aims to measure the average duration students currently spend discovering financial aid options and routing physical documents (e.g., Form 230-SCH). Once the ScholarPath AdDU prototype is developed, a controlled, task-based usability testing session will be conducted. The perceived time and effort recorded in the Pre-Study Student Problem Validation Survey (Appendix B) will then be compared against the corresponding items in the Post-Prototype Perceived Effort Survey (Appendix C), which is administered to the same participants immediately following the prototype session. Both instruments use identical ordinal and Likert-scaled items, enabling direct item-to-item mean comparisons to determine whether participants perceive the digital workflow to require significantly less time and effort than the manual process they described at baseline. The design and administration of both instruments, and the statistical procedure for their comparison, are detailed in Section 3.4.3. This comparative analysis will quantify the reduction in application processing time and validate the system's perceived performance efficiency. The comparative evaluation follows a within-subjects design, meaning the same cohort of participants who complete the Student Problem Validation Survey (establishing perceived baseline effort) will subsequently participate in the prototype usability testing session. This design is chosen over a between-subjects approach because it eliminates inter-group variability: each participant serves as their own control, ensuring that any observed difference in perceived effort is attributable to the system rather than individual differences in prior scholarship experience. A sample of 10 to 15 participants is sufficient for this design given that SUS reliability stabilizes at that range \cite{ref42}, and the time-perception comparison uses ordinal scaled data that does not require large-N inferential statistics. This study employs a Developmental Research Design, specifically focusing on System Development. This approach is the most appropriate for IT and Computer Studies capstone projects, as it centers on the structured creation, implementation, and evaluation of a functional software solution to address a specific operational problem. In this context, the design governs the transition of the University Scholarship Office's manual scholarship application process into a centralized, web-based digital ecosystem. The developmental design is complemented by a descriptive evaluation phase to assess the prototype's usability and functional suitability.
+The research design incorporates a comparative usability evaluation to validate the system's impact on processing efficiency. During the initial requirements gathering phase, the researchers will administer a pre-study time-on-task survey to a purposive sample of existing scholars. This survey aims to measure the average duration students currently spend discovering financial aid options and routing physical documents (e.g., Form 230-SCH). Once the ScholarPath AdDU prototype is developed, a controlled, task-based usability testing session will be conducted. The perceived time and effort recorded in the Pre-Study Student Problem Validation Survey (Appendix B) will then be compared against the corresponding items in the Post-Prototype Perceived Effort Survey (Appendix C), which is administered to the same participants immediately following the prototype session. Both instruments use identical ordinal and Likert-scaled items, enabling direct item-to-item mean comparisons to determine whether participants perceive the digital workflow to require significantly less time and effort than the manual process they described at baseline. The design and administration of both instruments, and the statistical procedure for their comparison, are detailed in Section 3.4.3. This comparative analysis will quantify the reduction in application processing time and validate the system's perceived performance efficiency. The comparative evaluation follows a within-subjects design, meaning the same cohort of participants who complete the Student Problem Validation Survey (establishing perceived baseline effort) will subsequently participate in the prototype usability testing session. This design is chosen over a between-subjects approach because it eliminates inter-group variability: each participant serves as their own control, ensuring that any observed difference in perceived effort is attributable to the system rather than individual differences in prior scholarship experience. The within-subjects comparison involves ten (10) student participants
+who have previously experienced the manual AdDU scholarship application
+process. Because the SUS has been shown to yield reasonably consistent
+results at small sample sizes~\cite{ref42}, and because the
+time-perception comparison uses ordinal and Likert-scaled data analysed
+descriptively rather than through large-sample inferential statistics,
+this sample is appropriate for the study's descriptive claims, although
+it does not support generalization to the full AdDU applicant
+population. In addition, one (1) expert administrative evaluator, a head
+of the Office of Admission and Aid, is purposively selected to evaluate
+the Unified Admin Dashboard. Because this evaluator oversees the
+scholarship application process, their assessment speaks directly to
+whether the dashboard fits the office's actual workflow. Because the
+evaluator did not experience the applicant side of the process, they
+complete a separate pair of administrative instruments (Appendices~D
+and~E) that mirror the structure of the student instruments but address
+the office's side of the manual process. The evaluator's pre- and
+post-prototype responses are compared item by item rather than through
+group statistics. This study employs a Developmental Research Design, specifically focusing on System Development. This approach is the most appropriate for IT and Computer Studies capstone projects, as it centers on the structured creation, implementation, and evaluation of a functional software solution to address a specific operational problem. In this context, the design governs the transition of the University Scholarship Office's manual scholarship application process into a centralized, web-based digital ecosystem. The developmental design is complemented by a descriptive evaluation phase to assess the prototype's usability and functional suitability.
 
 \section{System Development Life Cycle (SDLC)}
 
@@ -125,6 +143,12 @@ To resolve the operational bottlenecks caused by the physical submission of dens
   \label{tab:rbac}
 \end{table}
 
+At Ateneo de Davao University, the scholarship-processing functions
+assigned in Table~\ref{tab:rbac} to Scholarship Staff are carried out within
+the Office of Admission and Aid. For the usability evaluation, the expert
+administrative evaluator from this office accesses the Unified Admin
+Dashboard under the Scholarship Staff role.
+
 Rather than building separate portals for each administrative office, ScholarPath AdDU consolidates all evaluator functions into a single Unified Admin Dashboard. This design responds directly to the fragmented committee data identified in the problem statement: because each application passes sequentially through staff verification, interview, subcommittee evaluation, and executive endorsement (Figure~\ref{fig:flowchart}), office-specific portals would reintroduce the data silos and manual collation the system is meant to eliminate \cite{ref46,ref36}. A single interface writing to a single canonical record also ensures that every status change is attributable to an identified human actor within one audit log. Unification applies to the interface, not to access privileges: each user's view remains scoped by role through PostgreSQL Row Level Security (Table~\ref{tab:rbac}), preserving least-privilege access under RA 10173.
 
 
@@ -134,21 +158,43 @@ The absence of proactive alerts frequently results in missed application deadlin
 
 \section{Testing \& Evaluation Procedures: ISO/IEC 25010 Task-Based Usability Protocol}
 
-To assess the functional suitability and usability of the ScholarPath AdDU system, the study employs a mixed-method evaluation approach. This methodology combines task-based observational testing with a standardized System Usability Scale (SUS) questionnaire, administered to a purposive sample of approximately 10 to 15 end-users. This sample size ensures sufficient data saturation and will consist of scholarship applicants, University Scholarship Office staff, and selected School Subcommittee members, covering both the applicant portal and the Unified Admin Dashboard.
+To assess the functional suitability and usability of the ScholarPath
+AdDU system, the study employs a mixed-method evaluation approach that
+combines task-based observational testing with the standardized System
+Usability Scale (SUS). Eleven (11) purposively selected participants
+take part: ten (10) student participants, who evaluate the applicant
+portal, and one (1) expert administrative evaluator, a head of the
+Office of Admission and Aid, who evaluates the Unified Admin Dashboard.
+Because the two groups evaluate different interfaces, their results are
+analysed and reported separately.
 
 \subsection{Step-by-Step Testing Procedure}
 
 \begin{enumerate}
   \item \textbf{Briefing and Consent:} Participants are introduced to the system's purpose. The facilitator explicitly states that the system is being tested, not the user, and secures informed consent.
   \item \textbf{Task Execution:} Participants are asked to complete four specific, real-world scenarios designed to test core system features. The facilitator observes silently without offering assistance unless a critical failure occurs.
+  Student participants complete Tasks~1 to~3, while the expert
+  administrative evaluator completes Task~4.
   \begin{itemize}
     \item \textbf{Task 1: Profile Registration:} The user must create a new account, inputting required academic and socioeconomic data, such as QPI, household income, and degree program.
     \item \textbf{Task 2: Document Upload:} The user navigates to the Document Vault and successfully uploads a standardized test file (e.g., a mock Form 230-SCH), verifying that the system securely stores the file and registers the metadata appropriately.
     \item \textbf{Task 3: Dynamic Search and Application:} The user utilizes the dynamic faceted search to filter the available internal scholarship tracks to locate a specific ``Corporate \& External Foundation'' grant and successfully submit an application.
-    \item \textbf{Task 4: Unified Admin Dashboard Navigation (Scholarship Staff participants only):} The user logs into the Unified Admin Dashboard, navigates to pending applications, and changes the status of a specific student application from ``Pending'' to ``Approved'' to trigger the automated notification subsystem.
+    \item \textbf{Task 4: Unified Admin Dashboard Navigation (expert
+    administrative evaluator only):} The evaluator logs into the Unified
+    Admin Dashboard under the Scholarship Staff role, navigates to pending
+    applications, and changes the status of five (5) pre-seeded test
+    applications from ``Pending'' to ``Approved'' to trigger the automated
+    notification subsystem.
   \end{itemize}
   \item \textbf{Observational Data Collection:} During the execution of Tasks 1 through 4, the facilitator records specific usability metrics (detailed in Section 3.4.2).
   \item \textbf{Post-Session Instruments:} Immediately after completing the four tasks, participants are administered two sequential instruments in the following order. First, the participant completes the standardized 10-item System Usability Scale (SUS) questionnaire to assess overall subjective perceived usability of the ScholarPath AdDU interface. The SUS is administered first because it captures the participant's holistic impression of the system immediately after task completion, before any comparative framing is introduced. Second, the participant completes the Post-Prototype Perceived Effort Survey (Appendix C), which asks them to estimate the time and effort required by the digital process and to compare that perception against the manual experience they described in the pre-study. These are presented as two distinct instruments and are not to be conflated: the SUS measures general interface usability, while Appendix C generates the comparative data used to answer Research Questions 1, 2, and 3.
+  The expert administrative evaluator follows the same sequence, completing
+  the SUS first and then the Post-Prototype Administrative Evaluation
+  Survey (Appendix~E) in place of Appendix~C. The Pre-Study Administrative
+  Process Validation Survey (Appendix~D) is administered to the evaluator
+  before the testing session and before any demonstration of the system,
+  so that their baseline responses are not influenced by exposure to the
+  prototype.
   \item \textbf{Debriefing:} A brief, semi-structured exit interview is conducted to gather qualitative feedback on any frustrations or difficulties encountered.
 \end{enumerate}
 
@@ -162,12 +208,20 @@ To assess the functional suitability and usability of the ScholarPath AdDU syste
   \begin{itemize}
     \item Time-on-Task: Measured in seconds, this records the exact duration a user takes to successfully complete each of the four designated tasks.
     \item Error Rates: Calculated as the number of misclicks, failed uploads, or incorrect navigation paths taken per task, as well as the overall percentage of users who fail to complete a task independently.
-    \item Notification Delivery Success Rate: Measured during Task 4 (Unified Admin Dashboard Navigation, Section 3.4.1), this metric records the percentage of triggered notification events (specifically, application status mutations from 'Pending' to 'Approved' executed by the Scholarship Staff participant) that result in a successfully dispatched notification to the student's registered contact channel (SMS via Iprogsms or email via Resend) within the testing session. The facilitator confirms delivery by verifying receipt on the designated student-side test device. The metric is computed as: (Number of Successfully Delivered Notifications / Total Triggered Notification Events) $\times$ 100. A delivery success rate of 100\% across the testing session is the target threshold, given the controlled, low-concurrency testing environment.
-    \item Trigger-to-Delivery Latency: Recorded in seconds, this measures the elapsed time between the moment a Scholarship Staff participant commits a status mutation in the Unified Admin Dashboard (the event trigger) and the moment the corresponding notification is confirmed as received on the student-side test device (the delivery confirmation). The facilitator records both timestamps manually during Task 4. Mean latency across all triggered events in the session is computed and reported. This metric operationalizes the performance efficiency dimension of the notification subsystem as distinct from overall system response time.
+    \item Notification Delivery Success Rate: Measured during Task 4 (Unified Admin Dashboard Navigation, Section 3.4.1), this metric records the percentage of triggered notification events (specifically, application status mutations from 'Pending' to 'Approved' executed by the expert administrative evaluator) that result in a successfully dispatched notification to the student's registered contact channel (SMS via Iprogsms or email via Resend) within the testing session. The facilitator confirms delivery by verifying receipt on the designated student-side test device. The metric is computed as: (Number of Successfully Delivered Notifications / Total Triggered Notification Events) $\times$ 100. A delivery success rate of 100\% across the testing session is the target threshold, given the controlled, low-concurrency testing environment.
+    \item Trigger-to-Delivery Latency: Recorded in seconds, this measures the elapsed time between the moment the expert administrative evaluator commits a status mutation in the Unified Admin Dashboard (the event trigger) and the moment the corresponding notification is confirmed as received on the student-side test device (the delivery confirmation). The facilitator records both timestamps manually during Task 4. Mean latency across all triggered events in the session is computed and reported. This metric operationalizes the performance efficiency dimension of the notification subsystem as distinct from overall system response time.
   \end{itemize}
   \item System Usability Scale (SUS) Analysis:
   \begin{itemize}
     \item The SUS provides a validated instrument for measuring participants' subjective perceived usability of the platform. Responses are gathered on a standard 5-point Likert scale across 10 items, with alternating positive and negative phrasing to reduce response bias. Raw SUS scores, ranging from 0 to 100, will be analyzed using descriptive statistics. The Mean will be calculated to determine the average perceived usability score across the purposive sample, providing an overall benchmark of system acceptability. To contextualize the resulting mean SUS score, the study will apply the adjective rating scale validated by Bangor et al. \cite{ref13}, which maps numerical ranges to descriptive quality grades: scores of 85 and above are classified as Excellent, 71 -- 84 as Good, 50 -- 70 as OK, and below 50 as indicative of usability failure requiring significant redesign. A target mean SUS score of 71 or higher (the Good threshold) is set as the minimum benchmark for the ScholarPath AdDU prototype to be considered functionally acceptable for its intended user base. The Standard Deviation will measure the variance in scores, indicating the degree of consensus among participants regarding the system's subjective usability. It is important to note that the SUS addresses Research Question 4 specifically (overall system usability and performance efficiency) and is analytically distinct from the pre/post comparative instruments described below, which address Research Questions 1 through 3.
+    SUS scores are computed and reported separately for the two participant
+    groups. For the ten student participants, the Mean and Standard
+    Deviation are calculated and interpreted using the adjective rating
+    scale of Bangor et al.~\cite{ref13}, and the target benchmark of a mean
+    SUS score of 71 or higher applies to this group. The expert
+    administrative evaluator's SUS score is reported as an individual score,
+    without a mean or standard deviation, and is interpreted alongside their
+    task performance and semi-structured interview feedback.
   \end{itemize}
   \item Functional Correctness Evaluation (Smart Eligibility Checker Test Case Matrix)
   \begin{itemize}
@@ -182,12 +236,74 @@ To assess the functional suitability and usability of the ScholarPath AdDU syste
     \item For Component 3 of the pre-study instrument and Component 3 of the post-prototype instrument, frequency distributions will be used for the categorical items concerning application mismatch history (RQ2) and deadline-miss history (RQ3). The proportion of participants who reported previously submitting ineligible applications will be compared against the proportion who indicated the Smart Eligibility Checker would prevent such errors. Similarly, the proportion who reported previously missing deadlines will be compared against post-prototype responses on the notification subsystem's perceived effectiveness.
     \item For Component 4 of the post-prototype instrument (the overall comparative perception item), a frequency distribution of responses across the five-point scale, from Much Less Effort to Much More Effort, will be reported as a summary indicator of the system's perceived overall impact, synthesizing the findings of RQ1 through RQ3.
   \end{itemize}
+  \item \textbf{Administrative Pre/Post Survey Analysis:}
+  \begin{itemize}
+    \item The Pre-Study Administrative Process Validation Survey
+    (Appendix~D) and the Post-Prototype Administrative Evaluation Survey
+    (Appendix~E) are completed by the single expert administrative
+    evaluator. Because the respondent count is one, no means, standard
+    deviations, or frequency distributions are computed; responses are
+    instead presented item by item in a side-by-side pre/post table.
+    \item For Component~1 of both instruments (ordinal time estimates per
+    application and per cycle), the pre- and post-prototype selections are
+    reported together with the direction of change.
+    \item For Component~2 of both instruments (the seven-item perceived
+    effort grid), the change in rating per administrative sub-task is
+    reported. Sub-tasks 1--3, 5, and 6 inform RQ2(b), as they cover
+    screening, verification, committee collation, and decision
+    traceability; sub-tasks 4 and 7 inform RQ3, as they cover correction
+    requests and applicant communication.
+    \item The processing-issue frequencies in Component~3 of Appendix~D
+    are compared against the corresponding feature-effectiveness ratings
+    in Component~4 of Appendix~E.
+    \item The six perceived-usefulness items in Component~3 of Appendix~E,
+    adapted from Davis~\cite{ref51}, directly address RQ2(b). Each item
+    rating is reported, together with the evaluator's average across the
+    six items as a summary usefulness score.
+    \item The evaluator's responses to the overall comparative item and the
+    open-ended items are interpreted together with the semi-structured
+    interview using thematic analysis.
+  \end{itemize}
   \item Qualitative Data Analysis (Thematic Analysis): While the SUS provides a quantitative benchmark, the qualitative feedback gathered during the post-task semi-structured exit interviews will be processed using thematic analysis. The researchers will transcribe user comments and categorize them into recurring themes (e.g., ``Navigation Friction,'' ``Terminology Confusion,'' or ``Positive Interface Feedback''). Identifying these qualitative themes will provide contextual explanations for the quantitative error rates and guide the final iterative refinements of the system's user interface prior to deployment.
 \end{itemize}
 
-\subsection{Pre-Study Student Problem Validation Survey and Post-Prototype Perceived Effort Survey}
+\subsection{Pre-Study and Post-Prototype Survey Instruments}
 
 To operationalize the within-subjects comparative design described in Section 3.1, this study employs two structurally paired survey instruments administered at distinct phases of the research process. The Pre-Study Student Problem Validation Survey (Appendix B) is administered prior to system exposure to establish baseline data on the perceived burden of the existing manual scholarship application process. The Post-Prototype Perceived Effort Survey (Appendix C) is administered immediately following the task-based usability testing session to capture participants' post-exposure perceptions using an identical scale structure. Together, these instruments generate the comparative data required to address Research Questions 1, 2, and 3, as the System Usability Scale administered in the same session addresses only RQ4. The paired design deliberately uses within-subjects administration, in which the same participants complete both instruments, to eliminate inter-group variability. Because each participant's pre-study responses serve as their own individual baseline, any observed reduction in perceived effort or time burden can be attributed to the system's features rather than differences in prior scholarship experience across participants. Both instruments use scaled and categorical response formats rather than open recall of specific durations, acknowledging that the manual application process unfolds over days or weeks and is not conducive to precise time measurement. Pre-Study Student Problem Validation Survey (Appendix B) The pre-study instrument is administered to a purposive sample of current or former AdDU scholarship applicants prior to prototype development or any system exposure. It is organized into three components, each targeting a distinct dimension of the manual process and a corresponding research question. Component 1: Perceived Time-on-Process asks respondents to estimate the total duration of their end-to-end manual application experience, from initial scholarship discovery through physical document submission, using five ordinal ranges: less than 1 day, 1 -- 3 days, 4 -- 7 days, 1 -- 2 weeks, and more than 2 weeks. This item establishes the time-burden baseline for RQ1. It should be noted, however, that post-prototype time estimates are derived from a controlled prototype testing session and may not accurately reflect the duration of the process in actual real-world deployment, where variables such as document readiness, network conditions, and platform familiarity over sustained use may produce different results. Component 2: Perceived Effort Scale applies a five-point Likert format (1 = Very Easy, 5 = Very Difficult) to six discrete application sub-tasks. The six sub-tasks are: (1) finding out which specific scholarships the student was eligible for; (2) determining whether they specifically met all eligibility criteria (including QPI thresholds, household income ceilings, and degree program restrictions) for a given scholarship prior to submitting; (3) gathering, printing, and preparing the required physical documents; (4) physically submitting the completed application package to the respective offices; (5) tracking the status of the application after submission; and (6) keeping track of multiple scholarship deadlines simultaneously throughout the application period. Sub-tasks 1, 3, 4, and 5 together establish the effort baseline for RQ1. Sub-task 2 specifically establishes the eligibility confusion baseline for RQ2. Sub-task 6 establishes the deadline management difficulty baseline for RQ3. Component 3: Application Accuracy and Deadline History uses categorical and multiple-choice items to establish behavioral frequency baselines for RQ2 and RQ3. Respondents are asked whether they have ever submitted an application and later discovered they did not meet the eligibility requirements for that scholarship, and if so, how many times this occurred. They are separately asked whether they have ever missed a scholarship application deadline under the manual process, and if so, what the primary reason was. These items produce the concrete behavioral baseline data against which the post-prototype instrument's feature-effectiveness responses are compared. Post-Prototype Perceived Effort Survey (Appendix C) The post-prototype instrument is administered to the same participants immediately following the completion of the task-based usability testing session and after the SUS questionnaire. Its structural mirroring of Appendix B is deliberate and essential: because both instruments use identical Likert anchors, ordinal ranges, and sub-task categories, their corresponding items can be directly compared without transformation. Component 1 presents the same five ordinal time-estimation ranges as the pre-study, asking participants to estimate how much total time the digital scholarship application process through ScholarPath AdDU would require. This mirrors the pre-study Component 1 for RQ1 comparison. Component 2 presents the same six perceived effort sub-tasks as the pre-study, reworded to reflect ScholarPath AdDU's specific features: scholarship discovery through the centralized repository; eligibility determination through the Smart Eligibility Checker; document management through the Document Vault; digital application submission; application status tracking through the student dashboard; and deadline awareness through the automated notification subsystem. The same five-point Likert anchors are used, allowing mean scores per sub-task to be compared directly against pre-study means. Component 3: System Feature Effectiveness moves beyond effort estimation to assess whether participants believe the system's specific features address the problems identified in the pre-study's Component 3. Participants indicate whether they believe the Smart Eligibility Checker would prevent them from applying to scholarships for which they do not qualify, addressing the mismatch baseline from RQ2, and rate the extent to which the automated notification system would help them remain aware of upcoming deadlines, addressing the missed-deadline baseline from RQ3. Component 4: Overall Comparative Perception asks participants to characterize the total effort required by ScholarPath AdDU relative to the traditional manual process, using a five-point scale ranging from Much Less Effort to Much More Effort. This item synthesizes the findings of RQ1 through RQ3 into a single directional indicator and provides a holistic perception anchor for the study's comparative conclusions. An optional open-ended item closes the instrument, inviting participants to identify which specific system feature most reduced the difficulty of the scholarship application process for them.
+
+\paragraph{Pre-Study Administrative Process Validation Survey
+(Appendix~D)} Because the student instruments describe the applicant
+experience, a parallel pair of instruments is used for the expert
+administrative evaluator. The pre-study administrative instrument is
+administered before the testing session and before any system
+demonstration. Component~1 asks the evaluator to estimate the staff time
+needed to process a single application and the total length of an
+application cycle using ordinal ranges. Component~2 applies the same
+five-point effort scale used in the student instruments (1 = Very Easy,
+5 = Very Difficult) to seven administrative sub-tasks: receiving and
+sorting applications, baseline eligibility screening, document
+verification, requesting and tracking corrected documents, collating
+interview and subcommittee results, tracing who made a decision, and
+informing applicants of status and deadlines. Component~3 uses a
+five-point frequency scale to establish how often specific processing
+problems occur in a typical cycle, corresponding to the three problems
+identified in the Problem Statement.
+
+\paragraph{Post-Prototype Administrative Evaluation Survey (Appendix~E)}
+The post-prototype administrative instrument is administered immediately
+after the evaluator completes Task~4 and the SUS. Components~1 and~2
+repeat the time ranges and the seven effort sub-tasks of Appendix~D,
+reworded to the corresponding ScholarPath AdDU features, so that each
+item can be compared directly. Component~3 measures the perceived
+usefulness of the Unified Admin Dashboard using six items adapted from
+the Perceived Usefulness scale of Davis~\cite{ref51}, addressing
+RQ2(b). Component~4 asks the evaluator to rate whether specific features
+(the Smart Eligibility Checker flags, the Conditional Revert window, the
+automated notifications, and role-based access) would reduce the
+problems reported in Component~3 of Appendix~D. Component~5 asks for an
+overall comparison with the manual process, and Component~6 contains two
+optional open-ended items on the most useful feature and on changes
+required before the office could adopt the system.
 
 \section{Ethical Considerations}
 
@@ -196,5 +312,5 @@ Because the usability testing of ScholarPath AdDU involves human participants an
 \begin{itemize}
   \item Informed Consent and Voluntary Participation: Prior to any system interaction, all participants will be provided with an informed consent form detailing the purpose of the study, the specific tasks required, and the estimated time commitment. Participation is strictly voluntary, and end-users maintain the right to withdraw from the testing session at any point without penalty or need for justification.
   \item Data Anonymization and Privacy: During the task-based execution (specifically Task 1: Profile Registration), participants will be explicitly instructed to use provided mock data or pseudonymized profiles rather than their actual household income or academic records. This ensures that no genuine sensitive information is exposed or recorded during the evaluation of the system's matching algorithm.
-  \item Confidentiality and Secure Data Disposal: All observational metrics; pre-study and post-prototype survey responses (Appendices B and C), and SUS questionnaire responses will be kept strictly confidential. The qualitative and quantitative data will be aggregated so that no single metric or quote can be traced back to an individual participant. Upon the successful defense and final submission of the capstone project, all test accounts, mock databases, and physical consent forms utilized during the evaluation phase will be permanently and securely deleted to prevent any unauthorized data retention.
+  \item Confidentiality and Secure Data Disposal: All observational metrics; pre-study and post-prototype survey responses (Appendices~B to~E), and SUS questionnaire responses will be kept strictly confidential. The qualitative and quantitative data will be aggregated so that no single metric or quote can be traced back to an individual participant. Upon the successful defense and final submission of the capstone project, all test accounts, mock databases, and physical consent forms utilized during the evaluation phase will be permanently and securely deleted to prevent any unauthorized data retention. Because the expert administrative evaluator holds an identifiable position, their responses cannot be fully anonymized; the informed consent form for this participant therefore states explicitly that results will be attributed by position (a head of the Office of Admission and Aid) rather than by name, and the evaluator may review the reported findings before final submission.
 \end{itemize}
