@@ -8,6 +8,9 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 **Revision log (Em-dash cleanup).** All 159 em dashes (`---`) were removed from the Chapters 1–4 prose and Appendices B–C and recast as commas, colons, parentheses, or split sentences, preserving every `\cite{}`, `\ref{}`, and quotation. The compiled PDF now contains zero em dashes; numeric ranges (`--`) and the Appendix A `longtable` were left untouched. The "no em dash" rule was also recorded in `context/style_guide.md`, `AGENTS.md`, `CLAUDE.md`, and `.clinerules`. Build verified clean (`latexmk -pdf`).
 
 
+**Revision log (participant and evaluation revision).** The empirical evaluation was restructured to eleven (11) purposively selected participants in two separately reported groups: ten (10) student participants who evaluate the applicant portal and one (1) expert administrative evaluator (a head of the Office of Admission and Aid) who evaluates the Unified Admin Dashboard. RQ2(b) (§1.2) now names the expert administrative evaluator; §1.3 Objective 4 covers the two paired instrument sets; the §1.5 `Evaluation Scope` bullet was rewritten and a new `Single Expert Administrative Evaluator` limitation was added (a second proposed bullet, `Evaluator Roles Not Covered by Usability Testing`, was omitted because Chapter 3 defines no Lifecycle Test Case Matrix covering the Interview Panel, School Scholarship Subcommittee, and Scholarship Director roles); §2.7 recasts the Tullis & Stetson claim (`\cite{ref42}`); §3.1 sample justification rewritten; a new Office-of-Admission-and-Aid clarification paragraph was added after the RBAC matrix (§3.3.3); §3.4 opening rewritten; §3.4.1 now assigns Tasks 1--3 to students and Task 4 to the evaluator (Task 4 now changes five statuses); §3.4.2 adds separate SUS reporting, an `Administrative Pre/Post Survey Analysis` bullet, and the evaluator edits to the notification metrics; §3.4.3 was renamed `Pre-Study and Post-Prototype Survey Instruments` and gained Appendix D/E descriptions; §3.5 gained the identifiable-evaluator ethics note and the `Appendices~B to~E` scope. New Appendix D (Pre-Study Administrative Process Validation Survey) and Appendix E (Post-Prototype Administrative Evaluation Survey) were added and wired into `main.tex`; both mirror the Appendices B/C formatting (plain non-bold `Question Type:`/`Options:`/`Scale Columns:`/`Row Sub-tasks:` labels, one top-level `itemize` with nested option/scale lists, run-on `1. ... 2. ...` row items, component titles and follow-on prompts merged inline, no `\section*` headers). `references.bib` gained `ref51` (Davis, 1989, MIS Quarterly, `needs-manual-curation`). Chapter 4's evaluation paragraph (§4.10) was updated to the 11-participant split. Build verified clean (`latexmk -pdf -g`, 66 pp.).
+
+
 ## Front Matter
 - [x] Title page (rebuilt in `main.tex` titlepage; retitled to the revised manuscript) `[Complete]`
 - [ ] Abstract `[Missing]` — write last, after results
@@ -44,7 +47,7 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 - 3.4 Testing & Evaluation Procedures (ISO/IEC 25010 Task-Based Usability Protocol) `[Complete]`
   - 3.4.1 Step-by-Step Testing Procedure (Tasks 1–4) `[Complete]`
   - 3.4.2 Data Analysis and Statistical Tools `[Complete]` — includes the 15-profile Smart Eligibility Checker test-case matrix and notification delivery metrics; §3.4.1 converted to `enumerate`
-  - 3.4.3 Pre-Study / Post-Prototype Survey Instruments `[Complete]`
+  - 3.4.3 Pre-Study and Post-Prototype Survey Instruments `[Complete]` — renamed in the participant-revision pass; now describes the student pair (Appendices B/C) and the administrative pair (Appendices D/E) via `\paragraph{}` blocks
 - 3.5 Ethical Considerations `[Complete]`
 
 ## Chapter 4 — Theoretical Background (`chapters/04_theoretical_background.tex`) `[Complete]`
@@ -81,3 +84,5 @@ Status legend: `[Complete]` full prose in legacy draft, migrated · `[Draft/Part
 - Appendix A — Internal Financial Aid Pipelines Listed at AdDU `[Complete]` — revised to the three internal scholarship tracks (`longtable`, 3 rows × 4 cols) with `\url{}` sources
 - Appendix B — Pre-Study Student Problem Validation Survey `[Complete]`
 - Appendix C — Post-Prototype Perceived Effort Survey `[Complete]`
+- Appendix D — Pre-Study Administrative Process Validation Survey `[Complete]` — added in the participant-revision pass (`chapters/08_appendix_d.tex`, `\label{app:pre-admin-survey}`)
+- Appendix E — Post-Prototype Administrative Evaluation Survey `[Complete]` — added in the participant-revision pass (`chapters/09_appendix_e.tex`, `\label{app:post-admin-survey}`)
