@@ -8,7 +8,7 @@ Project: **ScholarPath AdDU** — a LaTeX capstone manuscript, not application c
 |---|---|
 | `main.tex` | Master driver — preamble (global settings) + `\input` wiring **only**. No prose. |
 | `chapters/*.tex` | One file per chapter/appendix (`01_introduction.tex` … `07_appendix_c.tex`); all body prose lives here. |
-| `references.bib` | Bibliography (biblatex + biber, `sorting=none`). Keys `ref1`…`ref50`. |
+| `references.bib` | Bibliography (plain BibTeX + `acm.bst`). Keys `ref1`…`ref51`. |
 | `figures/` | Raster PNGs + `addu_logo.png`; referenced via `\graphicspath{{figures/}}`. |
 | `context/*.md` | Living working notes. **Read these first.** |
 
@@ -34,7 +34,7 @@ Project: **ScholarPath AdDU** — a LaTeX capstone manuscript, not application c
 - **One chapter per file**, each starting with `\chapter{...}` + `\label{ch:...}`.
 - **Labels:** `ch:`/`sec:`/`fig:`/`tab:`/`lst:`; `\label` goes **after** `\caption` inside floats.
 - **Citations:** `\cite{refN}`; keys mirror legacy numbering — never invent keys; append `ref51`, `ref52`, … when adding sources; do not reorder `references.bib`.
-- **Tables:** `booktabs` (`\toprule`/`\midrule`/`\bottomrule`), no vertical rules; `longtable` for large inventories (see Appendix A).
+- **Tables:** `booktabs` (`\toprule`/`\midrule`/`\bottomrule`), no vertical rules; `longtable` for large inventories (see Appendix A). Table captions go **above** the table (Aguirre format); figure captions stay below the figure.
 - **Escaping:** escape `% & # _ $ { } ~ ^` in prose; use `\url{}` for URLs.
 - **Bibliography curation gate:** keep `keywords = {needs-manual-curation}` on every `references.bib` entry until its entry type, authors, venue, and DOI/URL have been verified and upgraded.
 

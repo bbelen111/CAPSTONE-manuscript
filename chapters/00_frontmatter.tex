@@ -1,0 +1,73 @@
+%======================================================================
+% Front matter -- Aguirre-format cover, abstract, contents, lists.
+% The cover carries no page number; front matter is numbered in roman
+% numerals; Chapter 1 restarts arabic numbering at 1.
+%======================================================================
+
+\begin{titlepage}
+  \centering
+  \setlength{\parindent}{0pt}
+  {\bfseries Ateneo de Davao University\par}
+  School of Arts and Sciences\par
+  Computer Studies Cluster - Information Technology Department\par
+  \vspace{1.5em}
+
+  In Partial Fulfillment of the Requirements for the Degree\par
+  Bachelor of Science in Information Technology\par
+  \vspace{2em}
+
+  \includegraphics[width=0.25\textwidth]{addu_logo.png}\par
+  \vspace{2em}
+
+  {\large\bfseries ScholarPath AdDU: A Web-Based Scholarship Application
+  Processing and Committee Decision-Support System for Ateneo de Davao
+  University's Internal Scholarship Tracks\par}
+  \vspace{1.5em}
+
+  by\par
+  \vspace{1em}
+  Operario, Raphael Miguel D.\par
+  Belen, Brendon Justine A.\par
+  Espinosa, Eriel John Q.\par
+  \vspace{2em}
+
+  Supervisor:\par
+  \vspace{0.3em}
+  Adrian Ablazo, MSc.\par
+  \vspace{1.5em}
+
+  Panelists:\par
+  \vspace{0.3em}
+  Dr. Oneil Victoriano\par
+  Ms. Novie Joy Pelobello, MS\par
+  Ms. Grace Tacadao, MS\par
+
+  \vfill
+  November 2026\par
+\end{titlepage}
+
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+% Approved by the team. Prospective tense: testing has not yet been executed;
+% rewrite with headline results once Chapters 4-5 exist.
+At Ateneo de Davao University (AdDU), the University Scholarship Office processes about 1,326 paper applications every cycle across three internal scholarship tracks: Jubilee, Grant-in-Aid, and Working Scholars. Applicants must assemble and submit a complete physical file at once, five school subcommittees apply selection criteria that are collated by hand, and status updates depend on passive communication channels, so missing documents, uncorrectable errors, and missed deadlines are common.
+
+This study designs, builds, and evaluates ScholarPath AdDU, a web-based scholarship application processing and committee decision-support system. The platform provides a Smart Eligibility Checker that screens applicants against baseline track requirements through the Exclusion Flag Hierarchy, a two-stage Document Vault with a 5-calendar-day Conditional Revert window, a single Unified Admin Dashboard whose role-scoped views are enforced by PostgreSQL Row Level Security, and event-driven SMS and email notifications delivered through Iprogsms and Resend. The system does not select, rank, or award scholarships automatically, does not disburse funds, and does not verify credentials with external agencies.
+
+Evaluation has not yet been conducted. Ten student participants will complete task-based usability testing, the System Usability Scale (SUS), and the pre- and post-prototype effort surveys in Appendices B and C; one expert administrative evaluator will complete the administrative survey pair in Appendices D and E, the SUS, and a semi-structured interview. A functional-correctness matrix of fifteen synthetic applicant profiles will exercise the Smart Eligibility Checker. Results will be reported using descriptive statistics.
+
+\vspace{1em}
+\noindent\textbf{Keywords:} scholarship management system, rule-based eligibility screening, decision support system, role-based access control, System Usability Scale
+
+\cleardoublepage
+\tableofcontents
+\cleardoublepage
+\listoftables
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+\pagenumbering{arabic}
