@@ -7,7 +7,7 @@ Audit date: 2026-04 (on migrated build, `main.pdf`, 58 pp., compiles clean with 
 - All 4 chapters, 3 appendices, and all 33 numbered sections/subsections from the legacy PDF were recovered and split into modular files; none lost (verified against the legacy TOC).
 - The matching-engine pseudocode was restored to its true line structure as Listing 1 (`lst:matching`).
 - All 4 body figures (Figures 1–4) were extracted from the PDF as PNGs and re-attached with captions and labels; all four were later regenerated from the revised source diagrams (Figures 2.1, 3.1, 3.2, and 3.3), so no legacy raster exports remain.
-- All ~130 numeric citation markers `[n]` were converted to `biblatex` keys (`refN`) with numbers preserved via `sorting=none`.
+- All ~130 numeric citation markers `[n]` were converted to `biblatex` keys (`refN`) with numbers preserved via `sorting=none`. *(Superseded: the bibliography engine is now plain BibTeX with `\bibliographystyle{acm}`; the `refN` keys were unchanged by the switch.)*
 - Appendix A was fully reconstructed as a 54-row `longtable` with URLs repaired (the PDF reflow had split them).
 - Build is clean: zero LaTeX errors, zero undefined references, zero missing glyphs.
 
@@ -21,7 +21,7 @@ Audit date: 2026-04 (on migrated build, `main.pdf`, 58 pp., compiles clean with 
 ## 2. Content Strengths
 - **§1.2 Problem Statement** is genuinely strong: three crisply enumerated problems, each traceable into RQ1–RQ4 and into instrument items (Appendix B/C sub-task mapping is explicit and impressive).
 - **§3.3 System Architecture** is the manuscript's core contribution: each design decision is explicitly derived from a named gap in a named reviewed work (e.g., Exclusion Flag Hierarchy ← Bilog's conflict-resolution gap). This evidence-grounding pattern is consistent and defensible.
-- **Chapter 4** does real theoretical work — every theory is operationalized ("in the DeLone & McLean model, X operationalizes dimension Y"), not name-dropped.
+- **Chapter 4** (now §3.6 Theoretical Background inside Chapter 3) does real theoretical work — every theory is operationalized ("in the DeLone & McLean model, X operationalizes dimension Y"), not name-dropped.
 - **Ethics (§3.5)** and **Scope & Limitations (§1.5)** are unusually thorough for a capstone (8 explicit limitations, including the self-reported-QPI weakness and the no-award-allocation constraint).
 
 ## 3. Content Weaknesses & Gaps

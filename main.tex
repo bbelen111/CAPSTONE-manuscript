@@ -4,13 +4,13 @@
 % Preamble discipline: global settings only. All body content lives in
 % chapters/*.tex and is wired in below via \input. Do not add prose here.
 %======================================================================
-\documentclass[12pt,letterpaper]{report}
+\documentclass[12pt,a4paper]{report}
 
 %----- Encoding, fonts, and page geometry -----------------------------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}   % scalable fonts required by microtype font expansion
-\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[a4paper,margin=1in]{geometry}
 \usepackage{microtype}
 
 %----- Mathematics -----------------------------------------------------
@@ -24,7 +24,9 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{enumitem}
-\usepackage{xurl}     % allow URL line breaks anywhere (used in Appendix A)
+\usepackage{xurl}     % URL line breaking (Appendix A); prefer breaks at / . - _ : = ?
+\def\UrlBreaks{\do\/\do\.\do\-\do\_\do\:\do\=\do\?}
+\Urlmuskip=0mu        % no stretchable glue at URL break points (prevents spread-out URLs)
 \usepackage{listings}
 \lstset{
   basicstyle=\ttfamily\small,
@@ -41,63 +43,23 @@
 
 %----- Bibliography ----------------------------------------------------
 \usepackage{csquotes}
-\usepackage[backend=biber,style=numeric-comp,sorting=none,maxbibnames=99]{biblatex}
-\addbibresource{references.bib}
+\renewcommand{\bibname}{References}   % report class prints "Bibliography" by default
 
 %----- Hyperref (load last) --------------------------------------------
 \usepackage[hidelinks]{hyperref}
 
 %======================================================================
-% Document metadata
+% Front matter (cover, abstract, contents, lists) lives in
+% chapters/00_frontmatter.tex -- this driver holds wiring only
 %======================================================================
-\title{%
-  {\LARGE\bfseries ScholarPath AdDU: A Web-Based Scholarship Application\\[4pt]
-  Processing and Committee Decision-Support System\\[4pt]
-  for Ateneo de Davao University's Internal Scholarship Tracks\par}
-  \vspace{18pt}
-  {\large A Research Project Presented to the Faculty of the\\
-  Computer Studies Cluster, School of Arts and Science\\
-  Ateneo de Davao University, Davao City\par}
-  \vspace{18pt}
-  {\normalsize In Partial Fulfillment of the Requirements in\\
-  Capstone Project and Research 1, 2nd Semester, SY 2025--2026\par}
-}
-\author{%
-  Operario, Raphael Miguel\\
-  Belen, Brendon Justine\\
-  Espinosa, Eriel John\\[10pt]
-  \normalsize Adviser: Adrian Ablazo, MSc.
-}
-\date{April 2026}
 
 %======================================================================
-% Front matter
+% Body
 %======================================================================
 \begin{document}
 
-\begin{titlepage}
-  \centering
-  \vspace*{1cm}
-  \includegraphics[width=0.22\textwidth]{addu_logo.png}\par
-  \vspace{1.5cm}
-  {\LARGE\bfseries ScholarPath AdDU: A Web-Based Scholarship Application Processing and Committee Decision-Support System for Ateneo de Davao University's Internal Scholarship Tracks\par}
-  \vspace{1.5cm}
-  {\large A Research Project Presented to the Faculty of the Computer Studies Cluster, School of Arts and Science\\ Ateneo de Davao University, Davao City\par}
-  \vspace{1cm}
-  {\normalsize In Partial Fulfillment of the Requirements in Capstone Project and Research 1, 2nd Semester, SY 2025--2026\par}
-  \vspace{1.5cm}
-  {\large
-    Raphael Miguel Operario\\
-    Brendon Justine Belen\\
-    Eriel John Espinosa\par}
-  \vspace{1cm}
-  {\normalsize Adviser: Adrian Ablazo, MSc.\par}
-  \vfill
-  {\normalsize April 2026\par}
-\end{titlepage}
-
-\tableofcontents
-\clearpage
+%----- Front matter (cover, abstract, contents, lists) -----------------
+\input{chapters/00_frontmatter}
 
 %======================================================================
 % Body -- one \input per chapter (preamble discipline: no prose here)
@@ -105,10 +67,15 @@
 \input{chapters/01_introduction}
 \input{chapters/02_related_works}
 \input{chapters/03_methodology}
-\input{chapters/04_theoretical_background}
+% Theoretical Background is now section 3.6 inside Chapter 3
+% (chapters/03_methodology.tex); it no longer has its own chapter file.
 
 %----- References ------------------------------------------------------
-\printbibliography[heading=bibintoc]
+% Plain BibTeX with the ACM style (required reference format); keys stay refN.
+\cleardoublepage
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{acm}
+\bibliography{references}
 
 %----- Appendices ------------------------------------------------------
 \appendix

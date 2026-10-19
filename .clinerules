@@ -17,8 +17,8 @@ Project: **ScholarPath AdDU** — LaTeX capstone manuscript (see `README.md` and
 - **Preamble discipline:** `main.tex` is driver wiring only — no prose, no `\usepackage` additions, no content. All body prose lives in `chapters/*.tex`.
 - **One chapter per file**, each starting with `\chapter{...}` + `\label{ch:...}`.
 - **Labels:** `ch:`/`sec:`/`fig:`/`tab:`/`lst:`; `\label` goes **after** `\caption`.
-- **Citations:** `\cite{refN}`; keys are `refN` reflecting legacy numbering — never invent keys; append `ref51`… when adding sources; do not reorder `references.bib` (biber `sorting=none`).
-- **Tables:** `booktabs` rules, no vertical rules; `longtable` for large inventories (e.g., Appendix A).
+- **Citations:** `\cite{refN}`; keys are `refN` reflecting legacy numbering — never invent keys; append `ref51`… when adding sources; keep `references.bib` in legacy `refN` order for traceability (the printed list is sorted by `\bibliographystyle{acm}`).
+- **Tables:** `booktabs` rules, no vertical rules; `longtable` for large inventories (e.g., Appendix A). Table captions go **above** the table (Aguirre format); figure captions stay below the figure.
 - **Escaping:** escape `% & # _ $ { } ~ ^` in prose; use `\url{}` for URLs.
 - **Bibliography curation gate:** keep `keywords = {needs-manual-curation}` on any `references.bib` entry until it is verified and upgraded to proper entry type/authors/venue/DOI/URL.
 

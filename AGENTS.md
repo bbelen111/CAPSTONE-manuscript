@@ -10,7 +10,7 @@ This is a **LaTeX academic manuscript**, not application code. There is no test 
 |---|---|
 | `main.tex` | Master driver — preamble (global settings) + `\input` wiring **only**. No prose. |
 | `chapters/*.tex` | One file per chapter/appendix; all body prose lives here. |
-| `references.bib` | Bibliography (biblatex + biber). Keys `ref1`…`ref50`. |
+| `references.bib` | Bibliography (plain BibTeX + `acm.bst`). Keys `ref1`…`ref51`. |
 | `figures/` | Raster PNGs + `addu_logo.png`; referenced via `\graphicspath{{figures/}}`. |
 | `context/*.md` | Living working notes (outline, style guide, drafting queue, audit). **Read these first.** |
 
@@ -38,11 +38,11 @@ latexmk -pdf -interaction=nonstopmode main.tex
 ## Hard Conventions (do not violate)
 
 - **Preamble discipline.** Never add prose, `\usepackage`, or content to `main.tex`. It is driver wiring only.
-- **One chapter per file.** Each file starts with `\chapter{...}` and `\label{ch:...}`.
+- **One chapter per file.** Each chapter file starts with `\chapter{...}` and `\label{ch:...}`. Exceptions: `chapters/00_frontmatter.tex` holds the cover, abstract and front-matter lists (no `\chapter`), and Chapter 3 also contains §3.6 Theoretical Background — the theory no longer has its own file.
 - **Label scheme.** `ch:`/`sec:`/`fig:`/`tab:`/`lst:` prefixes. Place `\label` **after** `\caption` inside floats.
-- **Citations.** `\cite{refN}`. Keys are `refN` mirroring the legacy numbering; **never invent new keys** — append `ref51`, `ref52`, … when adding sources. Do not reorder `references.bib` (uses `sorting=none`).
-- **Tables.** `booktabs` (`\toprule`/`\midrule`/`\bottomrule`), no vertical rules; `longtable` for large inventories (see Appendix A).
-- **Escaping.** Escape `% & # _ $ { } ~ ^` in prose; use `\url{}` for URLs.
+- **Citations.** `\cite{refN}`. Keys are `refN` mirroring the legacy numbering; **never invent new keys** — append `ref51`, `ref52`, … when adding sources. Keep `references.bib` in legacy `refN` order for traceability: the printed list is ordered by `\bibliographystyle{acm}` (alphabetical by author), so key order no longer controls the print order.
+- **Tables.** `booktabs` (`\toprule`/`\midrule`/`\bottomrule`), no vertical rules; `longtable` for large inventories (see Appendix A). Table captions go **above** the table (Aguirre format); figure captions stay below the figure.
+- **Escaping.** Escape `% & # _ $ { } ~ ^` in prose; use `\url{}` for URLs, and `\href{full-url}{short text}` when a link must display shortened (as in Table A.1).
 - **Bibliography curation gate.** Every entry in `references.bib` carries `keywords = {needs-manual-curation}`. Only remove it when you have verified and upgraded entry type, authors, venue, and DOI/URL. Otherwise leave the keyword intact.
 
 ## Drafting & Tone

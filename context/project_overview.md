@@ -6,8 +6,10 @@
 ## Team & Venue
 - Authors: Raphael Miguel Operario, Brendon Justine Belen, Eriel John Espinosa
 - Adviser: Adrian Ablazo, MSc.
-- Institution: Computer Studies Cluster, School of Arts and Science, Ateneo de Davao University (AdDU), Davao City
-- Requirement: Capstone Project and Research 1, 2nd Semester, SY 2025–2026 (target: April 2026)
+- Institution: Computer Studies Cluster, Information Technology Department, School of Arts and Sciences, Ateneo de Davao University (AdDU), Davao City
+- Program: Bachelor of Science in Information Technology
+- Panelists (on the cover): Dr. Oneil Victoriano, Ms. Novie Joy Pelobello, MS, Ms. Grace Tacadao, MS
+- Requirement: Capstone Project and Research 1, 2nd Semester, SY 2025–2026 (target: November 2026)
 
 ## Core Thesis
 AdDU administers three **internal scholarship tracks** (Jubilee, Grant-in-Aid, Working Scholars) — handling roughly 1,326 paper applications per cycle — through decentralized, largely paper-based processes (Form 230-SCH, sealed letters, static announcements), causing discovery friction, eligibility mismatch, and missed deadlines. A centralized, web-based platform — unifying **two-stage digital application processing, first-pass eligibility screening (the "Smart Eligibility Checker" with the Exclusion Flag Hierarchy), document management (the two-stage Document Vault with Conditional Revert), a Data-Feeding Committee Portal, and proactive notification (event-driven SMS/email)** — reduces the time and effort applicants spend, while remaining compliant with RA 10173 (Philippine Data Privacy Act of 2012).
@@ -33,7 +35,7 @@ AdDU administers three **internal scholarship tracks** (Jubilee, Grant-in-Aid, W
 - **Evaluation:** Task-based observational testing (completion rates, time-on-task) with a purposive sample of ~10–15 AdDU students, OSA staff, and Department Chairs/Coordinators; SUS (Bangor et al.; Tullis & Stetson sample-size rationale) + ISO/IEC 25010 framework; descriptive statistics for item-to-item mean comparison.
 - **Ethics:** RA 10173 compliance, informed consent, pseudonymized mock data, secure disposal.
 
-## Theoretical Anchors (Chapter 4)
+## Theoretical Anchors (§3.6 Theoretical Background)
 DeLone & McLean IS Success Model (umbrella) · Relational theory/normalization (Codd) · Cloud infrastructure (NIST; Tanenbaum) · Metadata-driven organization (Glushko) · Rule-based expert systems (Buchanan & Duda) · Information Foraging Theory (Pirolli & Card) · Event-driven architecture (IBM) · RBAC (Ferraiolo & Kuhn; Sandhu) · Empirical process control/Agile (Schwaber & Beedle) · HCI & ISO/IEC 25010 (Dix et al.)
 
 ## Target Audience
@@ -42,4 +44,4 @@ DeLone & McLean IS Success Model (umbrella) · Relational theory/normalization (
 - Tertiary: Philippine higher-education information-systems researchers (RRL conversation: Al-Ayyubi & Maulana; Daluyon & Bilog; Amer; Orgianus et al.)
 
 ## Manuscript Status Snapshot
-Chapters 1–4 and Appendices A–C exist as a compiling LaTeX draft, now migrated to the **revised (Capstone 2) manuscript**: committee decision-support framing, the three internal scholarship tracks (Jubilee, Grant-in-Aid, Working Scholars), Iprogsms/Resend notification APIs, the RBAC matrix (Table 3), and the Smart Eligibility Checker test-case matrix. **Results/Discussion and Conclusion chapters do not yet exist** — the evaluation is scheduled/prospective in the text ("will be administered"), consistent with a Research 1 manuscript mid-stream. See `outline.md` and `drafting_queue.md`.
+Chapters 1–3 (Introduction, Review of Related Literature, Methodology including §3.6 Theoretical Background) and Appendices A–E exist as a compiling LaTeX draft, migrated to the **revised (Capstone 2) manuscript**: committee decision-support framing, the three internal scholarship tracks (Jubilee, Grant-in-Aid, Working Scholars), Iprogsms/Resend notification APIs, the RBAC matrix (Table 3), and the Smart Eligibility Checker test-case matrix. **Results/Discussion (Ch. 4) and Conclusions (Ch. 5) do not yet exist** — the evaluation is scheduled/prospective in the text ("will be administered"), consistent with a Research 1 manuscript mid-stream. See `outline.md` and `drafting_queue.md`.
